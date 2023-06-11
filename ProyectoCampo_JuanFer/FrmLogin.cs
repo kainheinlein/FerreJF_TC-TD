@@ -23,7 +23,16 @@ namespace ProyectoCampo_JuanFer
         #region Funciones
         public void IniciarEnabled()
         {
-            if (txtUsuario.Text == "" & txtContra.Text =="")
+            if (txtUsuario.Text != "" & txtContra.Text != "")
+            {
+                btnIniciar.Enabled = true;
+            }
+            else
+            {
+                btnIniciar.Enabled = false;
+            }
+
+            /*if (txtUsuario.Text == "" & txtContra.Text =="")
             {
                 btnIniciar.Enabled = false;
             }
@@ -38,7 +47,7 @@ namespace ProyectoCampo_JuanFer
             else
             {
                 btnIniciar.Enabled = true;
-            }
+            }*/
         }
 
         #endregion
@@ -51,11 +60,22 @@ namespace ProyectoCampo_JuanFer
         private void txtUsuario_TextChanged(object sender, EventArgs e)
         {
             IniciarEnabled();
+            lblError.Text = "";
         }
 
         private void txtContra_TextChanged(object sender, EventArgs e)
         {
             IniciarEnabled();
+            lblError.Text = "";
+        }
+
+        private void txtContra_KeyPress(object sender, KeyPressEventArgs e)
+        //btn Iniciar al presion enter en campo Contraseña
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                btnIniciar_Click(sender, e);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -88,9 +108,13 @@ namespace ProyectoCampo_JuanFer
                     this.Hide();
                 }
             }
-
-
-
+            else
+            {
+                txtContra.Text = "";
+                txtUsuario.Text = "";
+                txtUsuario.Focus();
+                lblError.Text = "El usuario o contraseña ingresados son incorrectos";
+            }
             MessageBox.Show("Resultado Login -> " + Convert.ToString(authOK));
             //}
             //else MessageBox.Show("No pasa por objeto");

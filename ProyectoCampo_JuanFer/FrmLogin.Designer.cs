@@ -80,6 +80,7 @@
             this.txtContra.TabIndex = 2;
             this.txtContra.UseSystemPasswordChar = true;
             this.txtContra.TextChanged += new System.EventHandler(this.txtContra_TextChanged);
+            this.txtContra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContra_KeyPress);
             // 
             // lblVentana
             // 
@@ -122,7 +123,7 @@
             // 
             this.lblError.AutoSize = true;
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(13, 266);
+            this.lblError.Location = new System.Drawing.Point(63, 268);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(0, 13);
             this.lblError.TabIndex = 7;
@@ -131,7 +132,7 @@
             // 
             this.btnIniciar.Enabled = false;
             this.btnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciar.Location = new System.Drawing.Point(134, 279);
+            this.btnIniciar.Location = new System.Drawing.Point(134, 293);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(98, 23);
             this.btnIniciar.TabIndex = 8;
@@ -143,7 +144,7 @@
             // 
             this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(134, 318);
+            this.btnCancelar.Location = new System.Drawing.Point(134, 332);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(98, 23);
             this.btnCancelar.TabIndex = 9;

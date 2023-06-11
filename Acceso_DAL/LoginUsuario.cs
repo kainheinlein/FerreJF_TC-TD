@@ -12,7 +12,7 @@ namespace Acceso_DAL
     public class LoginUsuario
     {
         AccesoDatos conexDB = new AccesoDatos();
-        string SP_Login = "SP_Login";
+        private string SP_Login = "SP_Login";
         int resultado = -1;
 
         public int Login(string us, string pw)

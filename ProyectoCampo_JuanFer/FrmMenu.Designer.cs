@@ -59,7 +59,6 @@
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsAyuda = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsiInicioSesion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,7 +87,6 @@
             this.backupToolStripMenuItem,
             this.restoreToolStripMenuItem,
             this.bitacoraToolStripMenuItem});
-            this.tsAdmin.Enabled = false;
             this.tsAdmin.Name = "tsAdmin";
             this.tsAdmin.Size = new System.Drawing.Size(55, 20);
             this.tsAdmin.Text = "Admin";
@@ -105,14 +103,14 @@
             // crearModificarToolStripMenuItem
             // 
             this.crearModificarToolStripMenuItem.Name = "crearModificarToolStripMenuItem";
-            this.crearModificarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.crearModificarToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.crearModificarToolStripMenuItem.Text = "Crear/Modificar";
             this.crearModificarToolStripMenuItem.Click += new System.EventHandler(this.crearModificarToolStripMenuItem_Click);
             // 
             // desbloquearToolStripMenuItem
             // 
             this.desbloquearToolStripMenuItem.Name = "desbloquearToolStripMenuItem";
-            this.desbloquearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.desbloquearToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.desbloquearToolStripMenuItem.Text = "Desbloquear";
             // 
             // perfilesToolStripMenuItem
@@ -127,13 +125,13 @@
             // crearModificarToolStripMenuItem1
             // 
             this.crearModificarToolStripMenuItem1.Name = "crearModificarToolStripMenuItem1";
-            this.crearModificarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.crearModificarToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
             this.crearModificarToolStripMenuItem1.Text = "Crear/Modificar";
             // 
             // asignarToolStripMenuItem
             // 
             this.asignarToolStripMenuItem.Name = "asignarToolStripMenuItem";
-            this.asignarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.asignarToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.asignarToolStripMenuItem.Text = "Asignar";
             // 
             // idiomasToolStripMenuItem
@@ -178,7 +176,6 @@
             // tsInicio
             // 
             this.tsInicio.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsiInicioSesion,
             this.cerrarSesionToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.tsInicio.Name = "tsInicio";
@@ -190,19 +187,20 @@
             this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
             this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
+            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // tsUsuario
             // 
             this.tsUsuario.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cambiarClaveToolStripMenuItem,
             this.cambiarIdiomaToolStripMenuItem});
-            this.tsUsuario.Enabled = false;
             this.tsUsuario.Name = "tsUsuario";
             this.tsUsuario.Size = new System.Drawing.Size(59, 20);
             this.tsUsuario.Text = "Usuario";
@@ -224,7 +222,6 @@
             this.tsVentas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.productosToolStripMenuItem1,
             this.realizarCobroToolStripMenuItem});
-            this.tsVentas.Enabled = false;
             this.tsVentas.Name = "tsVentas";
             this.tsVentas.Size = new System.Drawing.Size(53, 20);
             this.tsVentas.Text = "Ventas";
@@ -247,7 +244,6 @@
             this.clientesToolStripMenuItem,
             this.productosToolStripMenuItem,
             this.proveedoresToolStripMenuItem});
-            this.tsGestion.Enabled = false;
             this.tsGestion.Name = "tsGestion";
             this.tsGestion.Size = new System.Drawing.Size(59, 20);
             this.tsGestion.Text = "Gestion";
@@ -280,7 +276,6 @@
             // 
             // tsReportes
             // 
-            this.tsReportes.Enabled = false;
             this.tsReportes.Name = "tsReportes";
             this.tsReportes.Size = new System.Drawing.Size(65, 20);
             this.tsReportes.Text = "Reportes";
@@ -290,13 +285,6 @@
             this.tsAyuda.Name = "tsAyuda";
             this.tsAyuda.Size = new System.Drawing.Size(53, 20);
             this.tsAyuda.Text = "Ayuda";
-            // 
-            // tsiInicioSesion
-            // 
-            this.tsiInicioSesion.Name = "tsiInicioSesion";
-            this.tsiInicioSesion.Size = new System.Drawing.Size(180, 22);
-            this.tsiInicioSesion.Text = "Iniciar Sesion";
-            this.tsiInicioSesion.Click += new System.EventHandler(this.iniciarSesionToolStripMenuItem_Click);
             // 
             // FrmMenu
             // 
@@ -350,7 +338,6 @@
         private System.Windows.Forms.ToolStripMenuItem registrarClienteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsReportes;
         private System.Windows.Forms.ToolStripMenuItem tsAyuda;
-        private System.Windows.Forms.ToolStripMenuItem tsiInicioSesion;
     }
 }
 
