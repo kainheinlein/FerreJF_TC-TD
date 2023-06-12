@@ -20,6 +20,7 @@ namespace ProyectoCampo_JuanFer
             InitializeComponent();
         }
 
+        UsuarioBLL usuario = new UsuarioBLL();
         #region Funciones
         public void IniciarEnabled()
         {
@@ -90,10 +91,10 @@ namespace ProyectoCampo_JuanFer
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            UsuarioBLL usuario = new UsuarioBLL();
             int authOK = usuario.Login(txtUsuario.Text, txtContra.Text);
             if (authOK == 1) 
             {
+                usuario.maxIntentos = 3;
                 //Buscar entre formularios abiertos, crear nuevo si no existe, mandar al frente si existe
                 Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is FrmMenu);
                 if (frm != null)
@@ -108,16 +109,33 @@ namespace ProyectoCampo_JuanFer
                     this.Hide();
                 }
             }
-            else
-            {
+            else 
+            {   
                 txtContra.Text = "";
-                txtUsuario.Text = "";
                 txtUsuario.Focus();
-                lblError.Text = "El usuario o contraseña ingresados son incorrectos";
+
+                //Mensaje de label de Error
+                switch (authOK)
+                {
+                    case -1:
+                        lblError.Text = "Hubo un error de conexion con la Base de Datos. Contacte al Administrador";
+                        break;
+                    case  0: 
+                        lblError.Text = "El usuario ingresado no existe";
+                        break;
+                    case 2: 
+                        lblError.Text = "El usuario se encuentra bloqueado. Contacte al administrador";
+                        break;
+                    case 3: 
+                        lblError.Text = "La contraseña ingresada es incorrecta";
+                        break;
+                    case 4:
+                        MessageBox.Show("Se alcanzo la cantidad maxima de intentos. Cerrando la aplicacion.","",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                        Application.Exit();
+                        break;
+                }
             }
             MessageBox.Show("Resultado Login -> " + Convert.ToString(authOK));
-            //}
-            //else MessageBox.Show("No pasa por objeto");
         }
     }
 }

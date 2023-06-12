@@ -25,7 +25,9 @@ namespace Acceso_DAL
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue(@"user", us);
                 cmd.Parameters.AddWithValue(@"pass", pw);
-                resultado = (int)cmd.ExecuteScalar();
+                cmd.Parameters.Add("@Result", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.ExecuteNonQuery();
+                resultado = Convert.ToInt32(cmd.Parameters["@Result"].Value);
 
                 return resultado;
             }

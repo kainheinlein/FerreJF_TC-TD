@@ -17,9 +17,13 @@ namespace Negocio_BLL
             LoginUsuario Autenticar = new LoginUsuario();
             Encriptador SecPass = new Encriptador();
             int AuthOK = Autenticar.Login(us, SecPass.Encriptar(pw));
-            if (AuthOK == 1)
+            if (AuthOK == 3 & maxIntentos > 0)
             {
-                
+                maxIntentos--;
+            }
+            if (maxIntentos == 0) 
+            { 
+                AuthOK = 4; 
             }
             return AuthOK;
         }
