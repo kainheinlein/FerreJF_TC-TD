@@ -9,39 +9,38 @@ namespace Servicios
 {
     public class SessionManager
     {
-        private static SessionManager _sesion;
+        private static SessionManager _sesion = null;
         private static object _lock = new Object();//Bloquear acceso multihilo
-        UsuarioBE _usuario;
+        private UsuarioBE _usuario;
+
+        private SessionManager() { }
 
         public static SessionManager GetInstance
         {
             get
             {
-                if (_sesion == null) _sesion = new SessionManager();
+                if (_sesion == null)
+                {
+                    _sesion = new SessionManager();
+                }
                 return _sesion;
             }
         }
 
-        public static void Login(UsuarioBE usuario)
+        public UsuarioBE UsuarioActual()
         {
-            lock(_lock)
-            {
-                if (_sesion == null)
-                {
-                    _sesion = new SessionManager();
-                    _sesion._usuario = usuario;
-                }
-                else
-                {
-                    
-                }
-            }
-
-
+            return _usuario; 
         }
-        private SessionManager() 
+
+        public void Login(UsuarioBE usuario)
         {
-            
+            _usuario = usuario;
+        }
+
+        public void Logout()
+        {
+            _usuario = null;
+            _sesion = null;
         }
     }
 }

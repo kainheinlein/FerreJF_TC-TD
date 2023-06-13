@@ -25,7 +25,18 @@ namespace Negocio_BLL
             { 
                 AuthOK = 4; 
             }
+            if (AuthOK == 1)
+            {
+                UsuarioBE usuario = new UsuarioBE();
+                usuario.user = us;
+                SessionManager.GetInstance.Login(usuario);
+            }
             return AuthOK;
+        }
+
+        public void Logout()
+        {
+            SessionManager.GetInstance.Logout();
         }
     }
 }

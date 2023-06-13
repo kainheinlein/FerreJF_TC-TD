@@ -1,4 +1,5 @@
-﻿using Servicios;
+﻿using Entidad_BE;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,8 +19,6 @@ namespace ProyectoCampo_JuanFer
             InitializeComponent();
         }
 
-        //FrmLogin form = null;
-
         private void crearModificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmUsuario frmUsu = new FrmUsuario();
@@ -29,23 +28,8 @@ namespace ProyectoCampo_JuanFer
 
         private void FrmMenu_Load(object sender, EventArgs e)
         {
-            
-        }
-
-        private void iniciarSesionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Buscar entre formularios abiertos, crear nuevo si no existe, mandar al frente si existe
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is FrmLogin);
-            if (frm != null)
-            {
-                frm.BringToFront();
-                return;
-            }
-            else
-            {
-                frm = new FrmLogin();
-                frm.Show(this);
-            }
+            UsuarioBE usActual = SessionManager.GetInstance.UsuarioActual();
+            lblUsuario.Text = "Usuario: " + usActual.user;
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,13 +37,22 @@ namespace ProyectoCampo_JuanFer
             if (MessageBox.Show("¿Esta seguro que desea cerrar la aplicacion?", "Atencion",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                SessionManager.GetInstance.Logout();
                 Application.Exit();
             }
         }
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("¿Esta seguro que desea cerrar la sesion?", "Atencion",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                SessionManager.GetInstance.Logout();
 
+                FrmLogin frm = new FrmLogin();
+                frm.Show();
+                this.Close();
+            }
         }
     }
 }

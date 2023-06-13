@@ -95,19 +95,9 @@ namespace ProyectoCampo_JuanFer
             if (authOK == 1) 
             {
                 usuario.maxIntentos = 3;
-                //Buscar entre formularios abiertos, crear nuevo si no existe, mandar al frente si existe
-                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is FrmMenu);
-                if (frm != null)
-                {
-                    frm.BringToFront();
-                    return;
-                }
-                else
-                {
-                    frm = new FrmMenu();
-                    frm.Show();
-                    this.Hide();
-                }
+                FrmMenu frm = new FrmMenu();
+                frm.Show();
+                this.Hide();
             }
             else 
             {   
@@ -135,7 +125,7 @@ namespace ProyectoCampo_JuanFer
                         break;
                 }
             }
-            MessageBox.Show("Resultado Login -> " + Convert.ToString(authOK));
+            //MessageBox.Show("Resultado Login -> " + Convert.ToString(authOK));
         }
     }
 }
