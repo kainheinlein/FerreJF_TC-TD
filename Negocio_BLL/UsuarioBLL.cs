@@ -23,6 +23,8 @@ namespace Negocio_BLL
             }
             if (maxIntentos == 0) 
             { 
+                GestionUsuario gestion = new GestionUsuario();
+                gestion.ActualizarBloqueo(us, true);
                 AuthOK = 4; 
             }
             if (AuthOK == 1)

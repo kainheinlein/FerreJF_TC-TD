@@ -14,9 +14,49 @@ namespace ProyectoCampo_JuanFer
 {
     public partial class FrmMenu : Form
     {
+        private FrmUsuario formUsuario;
         public FrmMenu()
         {
             InitializeComponent();
+        }
+
+        #region Set Formulario
+        public void FormConectado()
+        {
+            UsuarioBE usActual = SessionManager.GetInstance.UsuarioActual();
+            lblUsuario.Text = "Usuario: " + usActual.user;
+            iniciarSesionToolStripMenuItem.Enabled = false;
+            cerrarSesionToolStripMenuItem.Enabled = true;
+            tsAdmin.Enabled = true;
+            tsReportes.Enabled = true;
+            tsGestion.Enabled = true;
+            realizarCobroToolStripMenuItem.Enabled = true;
+            cambiarClaveToolStripMenuItem.Enabled = true;
+        }
+
+        public void FormDesconectado()
+        {
+            lblUsuario.Text = "Usuario: Sin Conexion";
+            iniciarSesionToolStripMenuItem.Enabled = true;
+            cerrarSesionToolStripMenuItem.Enabled = false;
+            //tsAdmin.Enabled = false;
+            tsReportes.Enabled = false;
+            tsGestion.Enabled = false;
+            realizarCobroToolStripMenuItem.Enabled = false;
+            cambiarClaveToolStripMenuItem.Enabled = false;
+        }
+
+        #endregion
+        private void FrmMenu_Load(object sender, EventArgs e)
+        {
+            if (SessionManager.GetInstance.logged == true)
+            {
+                FormConectado();
+            }
+            else
+            {
+                FormDesconectado();
+            }
         }
 
         private void crearModificarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -24,12 +64,6 @@ namespace ProyectoCampo_JuanFer
             FrmUsuario frmUsu = new FrmUsuario();
             frmUsu.MdiParent = this;
             frmUsu.Show();
-        }
-
-        private void FrmMenu_Load(object sender, EventArgs e)
-        {
-            UsuarioBE usActual = SessionManager.GetInstance.UsuarioActual();
-            lblUsuario.Text = "Usuario: " + usActual.user;
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -52,6 +86,27 @@ namespace ProyectoCampo_JuanFer
                 FrmLogin frm = new FrmLogin();
                 frm.Show();
                 this.Close();
+            }
+        }
+
+        private void iniciarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmLogin frm = new FrmLogin();
+            frm.Show();
+            this.Close();
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (formUsuario == null || formUsuario.IsDisposed)
+            {
+                formUsuario = new FrmUsuario();
+                formUsuario.MdiParent = this;
+                formUsuario.Show();
+            }
+            else
+            {
+                formUsuario.BringToFront();
             }
         }
     }

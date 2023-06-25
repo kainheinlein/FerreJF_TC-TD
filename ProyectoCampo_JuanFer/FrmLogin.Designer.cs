@@ -40,6 +40,7 @@
             this.lblError = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.lblSinConexion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -123,7 +124,7 @@
             // 
             this.lblError.AutoSize = true;
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(63, 268);
+            this.lblError.Location = new System.Drawing.Point(30, 269);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(0, 13);
             this.lblError.TabIndex = 7;
@@ -132,7 +133,7 @@
             // 
             this.btnIniciar.Enabled = false;
             this.btnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciar.Location = new System.Drawing.Point(134, 293);
+            this.btnIniciar.Location = new System.Drawing.Point(134, 285);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(98, 23);
             this.btnIniciar.TabIndex = 8;
@@ -144,7 +145,7 @@
             // 
             this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(134, 332);
+            this.btnCancelar.Location = new System.Drawing.Point(134, 323);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(98, 23);
             this.btnCancelar.TabIndex = 9;
@@ -152,11 +153,25 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // lblSinConexion
+            // 
+            this.lblSinConexion.AutoSize = true;
+            this.lblSinConexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSinConexion.Location = new System.Drawing.Point(2, 358);
+            this.lblSinConexion.Name = "lblSinConexion";
+            this.lblSinConexion.Size = new System.Drawing.Size(112, 15);
+            this.lblSinConexion.TabIndex = 10;
+            this.lblSinConexion.Text = "Iniciar sin conexion";
+            this.lblSinConexion.Click += new System.EventHandler(this.lblSinConexion_Click);
+            this.lblSinConexion.MouseLeave += new System.EventHandler(this.lblSinConexion_MouseLeave);
+            this.lblSinConexion.MouseHover += new System.EventHandler(this.lblSinConexion_MouseHover);
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(348, 380);
+            this.Controls.Add(this.lblSinConexion);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.lblError);
@@ -167,6 +182,7 @@
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -195,5 +211,6 @@
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Button btnIniciar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label lblSinConexion;
     }
 }

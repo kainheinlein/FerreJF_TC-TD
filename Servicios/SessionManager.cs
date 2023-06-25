@@ -12,6 +12,7 @@ namespace Servicios
         private static SessionManager _sesion = null;
         private static object _lock = new Object();//Bloquear acceso multihilo
         private UsuarioBE _usuario;
+        public bool logged = false;
 
         private SessionManager() { }
 
@@ -21,10 +22,16 @@ namespace Servicios
             {
                 if (_sesion == null)
                 {
-                    _sesion = new SessionManager();
+                    lock (_lock)
+                    {
+                        if (_sesion == null)
+                        {
+                            _sesion = new SessionManager();
+                        }
+                    }
                 }
                 return _sesion;
-            }
+            }   
         }
 
         public UsuarioBE UsuarioActual()
@@ -34,11 +41,13 @@ namespace Servicios
 
         public void Login(UsuarioBE usuario)
         {
+            logged = true;
             _usuario = usuario;
         }
 
         public void Logout()
         {
+            logged = false;
             _usuario = null;
             _sesion = null;
         }
