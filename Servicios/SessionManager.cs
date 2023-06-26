@@ -10,7 +10,7 @@ namespace Servicios
     public class SessionManager
     {
         private static SessionManager _sesion = null;
-        private static object _lock = new Object();//Bloquear acceso multihilo
+        private static object _lock = new object();//Bloquear acceso multihilo
         private UsuarioBE _usuario;
         public bool logged = false;
 

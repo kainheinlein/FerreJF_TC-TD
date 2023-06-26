@@ -12,6 +12,7 @@ namespace Negocio_BLL
     public class UsuarioBLL
     {
         public int maxIntentos = 3;
+
         public int Login(string us, string pw) 
         {
             LoginUsuario Autenticar = new LoginUsuario();

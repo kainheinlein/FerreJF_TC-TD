@@ -1,4 +1,5 @@
 ﻿using Entidad_BE;
+using Negocio_BLL;
 using Servicios;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +16,7 @@ namespace ProyectoCampo_JuanFer
 {
     public partial class FrmMenu : Form
     {
-        private FrmUsuario formUsuario;
+        private FrmUsuario frmUsuario;
         public FrmMenu()
         {
             InitializeComponent();
@@ -59,13 +61,6 @@ namespace ProyectoCampo_JuanFer
             }
         }
 
-        private void crearModificarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmUsuario frmUsu = new FrmUsuario();
-            frmUsu.MdiParent = this;
-            frmUsu.Show();
-        }
-
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿Esta seguro que desea cerrar la aplicacion?", "Atencion",
@@ -81,7 +76,8 @@ namespace ProyectoCampo_JuanFer
             if (MessageBox.Show("¿Esta seguro que desea cerrar la sesion?", "Atencion",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                SessionManager.GetInstance.Logout();
+                UsuarioBLL usuario = new UsuarioBLL(); 
+                usuario.Logout();
 
                 FrmLogin frm = new FrmLogin();
                 frm.Show();
@@ -98,15 +94,19 @@ namespace ProyectoCampo_JuanFer
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (formUsuario == null || formUsuario.IsDisposed)
+            if (frmUsuario == null || frmUsuario.IsDisposed)
             {
-                formUsuario = new FrmUsuario();
-                formUsuario.MdiParent = this;
-                formUsuario.Show();
+                frmUsuario = new FrmUsuario()
+                {
+                    MdiParent = this,
+                    Dock = DockStyle.Fill,
+                    FormBorderStyle = FormBorderStyle.None
+                };
+                frmUsuario.Show();
             }
             else
             {
-                formUsuario.BringToFront();
+                frmUsuario.BringToFront();
             }
         }
     }

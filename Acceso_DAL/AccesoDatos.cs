@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
 using Entidad_BE;
+using System.Windows.Forms;
 
 namespace Acceso_DAL
 {
@@ -43,13 +44,6 @@ namespace Acceso_DAL
             {
                 return false;
             } 
-        }
-
-        public UsuarioBE ObtenerUsuario(string us)
-        {
-            UsuarioBE usuario = new UsuarioBE();
-
-            return usuario;
         }
     }
 }

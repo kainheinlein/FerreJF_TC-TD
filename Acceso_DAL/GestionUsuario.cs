@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Acceso_DAL
 {
@@ -37,5 +38,28 @@ namespace Acceso_DAL
             }
         }
 
+        public DataTable ObtenerUsuarios()
+        {
+            try
+            {
+                conexDB.AbrirConexion();
+                SqlCommand cmd = new SqlCommand("SP_ExtTabla", conexDB.conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@tabla", "Usuarios");
+
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ha ocurrido un error: " + e.Message);
+                return null;
+            }
+            finally
+            {
+                conexDB.CerrarConexion();
+            }
+        }
     }
 }

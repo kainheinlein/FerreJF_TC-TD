@@ -84,7 +84,7 @@ namespace ProyectoCampo_JuanFer
 
             if (!okus || !okpsw)//Validacion caracteres
             {
-                MessageBox.Show("El texto ingresado no cumple con el formato requerido.");
+                MessageBox.Show("Los datos ingresados no cumplen con el formato requerido.","Datos Invalidos",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 txtUsuario.Clear();
                 txtContra.Clear();
                 txtUsuario.Focus();
@@ -125,9 +125,7 @@ namespace ProyectoCampo_JuanFer
                             break;
                     }
                 }
-                //MessageBox.Show("Resultado Login -> " + Convert.ToString(authOK));
             }
-
         }
 
         private void lblSinConexion_Click(object sender, EventArgs e)
