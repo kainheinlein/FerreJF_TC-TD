@@ -25,41 +25,39 @@ namespace ProyectoCampo_JuanFer
         #region Funciones
         public void ConfigDefaultForm()
         {
-            dgvUsuarios.ReadOnly = true;
             btnAplicar.Enabled = false;
             btnCancelar.Enabled = false;
-        }
+            LimpiarBox();
 
+            foreach (Control control in gbDatos.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Enabled = false;
+                }
+            }
+        }
+        public void LimpiarBox()
+        {
+            foreach (Control control in gbDatos.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = "";
+                }
+            }
+        }
         public void ConfigDGV(DataTable dt)
         {
-            List<string> visibles = new List<string>()
-            {
-                "Nombre","Apellido","DNI","Usuario","Direccion","Telefono","Email","Activo","Bloqueado"
-            };
+            dgvUsuarios.DataSource = dt;
+            dgvUsuarios.Columns["Direccion"].Visible = false;
+            dgvUsuarios.Columns["Telefono"].Visible = false;
+            dgvUsuarios.Columns["Email"].Visible = false;
+            dgvUsuarios.Columns["Codigo"].Visible = false;
+            dgvUsuarios.Columns["Contraseña"].Visible = false;
+            dgvUsuarios.Columns["Intentos"].Visible = false;
+            dgvUsuarios.ReadOnly = true;
 
-            // Crea un nuevo DataTable con las columnas seleccionadas
-            DataTable tf = new DataTable();
-
-            foreach (string columnaMostrar in visibles)
-            {
-                if (dt.Columns.Contains(columnaMostrar))
-                {
-                    tf.Columns.Add(columnaMostrar, dt.Columns[columnaMostrar].DataType);
-                }
-            }
-            // Copia los datos al nuevo DataTable
-            foreach (DataRow sourceRow in dt.Rows)
-            {
-                DataRow newRow = tf.NewRow();
-
-                foreach (DataColumn column in tf.Columns)
-                {
-                    newRow[column.ColumnName] = sourceRow[column.ColumnName];
-                }
-                tf.Rows.Add(newRow);
-            }
-            //Asignamos fuente al DataGrid
-            dgvUsuarios.DataSource = tf;
         }
         #endregion
 

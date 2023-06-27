@@ -12,6 +12,8 @@ namespace Negocio_BLL
     public class UsuarioBLL
     {
         public int maxIntentos = 3;
+        private UsuarioBE usuario;
+        private GestionUsuario gestion;
 
         public int Login(string us, string pw) 
         {
@@ -24,13 +26,13 @@ namespace Negocio_BLL
             }
             if (maxIntentos == 0) 
             { 
-                GestionUsuario gestion = new GestionUsuario();
+                gestion = new GestionUsuario();
                 gestion.ActualizarBloqueo(us, true);
                 AuthOK = 4; 
             }
             if (AuthOK == 1)
             {
-                UsuarioBE usuario = new UsuarioBE();
+                usuario = new UsuarioBE();
                 usuario.user = us;
                 SessionManager.GetInstance.Login(usuario);
             }

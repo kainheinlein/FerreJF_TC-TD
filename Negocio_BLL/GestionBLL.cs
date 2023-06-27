@@ -20,7 +20,5 @@ namespace Negocio_BLL
             dt = GestionUs.ObtenerUsuarios();
             return dt;
         }
-
-
     }
 }
