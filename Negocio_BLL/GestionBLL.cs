@@ -12,7 +12,8 @@ namespace Negocio_BLL
 {
     public class GestionBLL
     {
-        GestionUsuario GestionUs;
+        private GestionUsuario GestionUs;
+        public UsuarioBE usuario;
         public DataTable ObtenerUsuarios()
         {
             GestionUs = new GestionUsuario();
@@ -20,5 +21,7 @@ namespace Negocio_BLL
             dt = GestionUs.ObtenerUsuarios();
             return dt;
         }
+
+
     }
 }

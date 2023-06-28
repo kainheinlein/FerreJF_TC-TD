@@ -15,12 +15,14 @@ namespace Entidad_BE
         private int _dni;
         private string _user;
         private string _pass;
+        private string _rol;
         private string _dir;
         private int _tel;
         private string _email;
         private Boolean _estado;
         private Boolean _bloq;
-        private int _intentos;
+
+        public UsuarioBE(){}
 
         public int cod { get => _cod; set => _cod = value; }
         public string nomb { get => _nomb; set => _nomb = value; }
@@ -33,6 +35,6 @@ namespace Entidad_BE
         public string email { get => _email; set => _email = value; }
         public bool estado { get => _estado; set => _estado = value; }
         public bool bloq { get => _bloq; set => _bloq = value; }
-        public int intentos { get => _intentos; set => _intentos = value; }
+        public string rol { get => _rol; set => _rol = value; }
     }
 }
