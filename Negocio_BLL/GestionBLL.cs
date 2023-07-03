@@ -22,6 +22,10 @@ namespace Negocio_BLL
             return dt;
         }
 
-
+        public int CrearUsuario(UsuarioBE us)
+        {
+            int resultado = 0;
+            return resultado;
+        }
     }
 }

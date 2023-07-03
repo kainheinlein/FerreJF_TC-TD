@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidad_BE;
@@ -21,11 +22,11 @@ namespace ProyectoCampo_JuanFer
         }
         UsuarioBE auxUsuario;
         GestionBLL gestion = new GestionBLL();
-        List<string> roles = new List<string>() {"Cajero","Vendedor","Administrador"};
+        List<string> roles = new List<string>() { "Cajero", "Vendedor", "Administrador" };
 
         #region Funciones
 
-        public void ConfigDefaultForm()
+        private void ConfigDefaultForm()
         {
             btnGuardar.Enabled = false;
             btnCancelar.Enabled = false;
@@ -45,7 +46,7 @@ namespace ProyectoCampo_JuanFer
                 }
             }
         }
-        public void HabilitarCampos()
+        private void HabilitarCampos()
         {
             foreach (Control control in gbDatos.Controls)
             {
@@ -56,7 +57,7 @@ namespace ProyectoCampo_JuanFer
                 cmbRol.Enabled = true;
             }
         }
-        public void LimpiarDatos()
+        private void LimpiarDatos()
         {
             foreach (Control control in gbDatos.Controls)
             {
@@ -66,10 +67,10 @@ namespace ProyectoCampo_JuanFer
                 }
             }
             cmbRol.SelectedItem = null;
-            chkActivo.Checked = false;
             chkBloqueado.Checked = false;
+            txtDoc.Focus();
         }
-        public void ConfigDGV(DataTable dt)
+        private void ConfigDGV(DataTable dt)
         {
             dgvUsuarios.DataSource = dt;
             dgvUsuarios.Columns["Direccion"].Visible = false;
@@ -82,12 +83,105 @@ namespace ProyectoCampo_JuanFer
         }
         private void CargaUsuario()
         {
+            bool okCampos = ExpReg();
+
+            if (!okCampos)//Validacion caracteres
+            {
+                LimpiarDatos();
+                txtMensaje.Text = "Los datos ingresados no cumplen con el formato requerido, " +
+                    "ingrese los datos sin espacios ni caracteres especiales";
+            }
+            else
+            {
+                auxUsuario = new UsuarioBE();
+                auxUsuario.dni = Convert.ToInt32(txtDoc.Text);
+                auxUsuario.nomb = txtNom.Text;
+                auxUsuario.ape = txtApe.Text;
+                auxUsuario.rol = cmbRol.SelectedValue.ToString();
+                auxUsuario.user = txtUsu.Text;
+                auxUsuario.pass = Encriptador.EncriptarIrrev(txtPass.Text);
+                auxUsuario.bloq = chkActivo.Checked;
+                auxUsuario.estado = chkActivo.Checked;
+                auxUsuario.dir = txtDir.Text;
+                auxUsuario.tel = Convert.ToInt32(txtTel.Text);
+                auxUsuario.email = txtMail.Text;
+                txtMensaje.Text = "CargaUsuario OK";
+            }
 
         }
-
-
+        private void GuardarEnabled()
+        {
+            if (txtNom.Text != "" & txtApe.Text != "" & txtDoc.Text != ""
+                    & txtUsu.Text != "" & txtPass.Text != "" & cmbRol.SelectedValue != null)
+            {
+                btnGuardar.Enabled = true;
+            }
+            else
+            {
+                btnGuardar.Enabled = false;
+            }
+        }
         #endregion
 
+        #region ValidacionCampos
+        private void txtDoc_TextChanged(object sender, EventArgs e)
+        {
+            txtMensaje.Clear();
+            GuardarEnabled();
+        }
+
+        private void txtNom_TextChanged(object sender, EventArgs e)
+        {
+            txtMensaje.Clear();
+            GuardarEnabled();
+        }
+
+        private void txtApe_TextChanged(object sender, EventArgs e)
+        {
+            txtMensaje.Clear();
+            GuardarEnabled();
+        }
+
+        private void txtUsu_TextChanged(object sender, EventArgs e)
+        {
+            txtMensaje.Clear();
+            GuardarEnabled();
+        }
+
+        private void txtPass_TextChanged(object sender, EventArgs e)
+        {
+            txtMensaje.Clear();
+            GuardarEnabled();
+        }
+
+        private void cmbRol_SelectedValueChanged(object sender, EventArgs e)
+        {
+            txtMensaje.Clear();
+            GuardarEnabled();
+        }
+
+        private bool ExpReg()
+        {
+            string[] campoTxt = {txtNom.Text,txtApe.Text,
+                txtDir.Text};
+            string[] campoNum = {txtDoc.Text,Text,txtTel.Text};
+            string[] campoSens = {txtUsu.Text,txtPass.Text};
+            string patronT = "/^[A-Za-z0-9]+$/g";
+            string patronN = "^[0-9]+$";
+            string patronS = "^[A-Za-z0-9]+$";
+            string patronM = @"/^[^\s@]+@[^\s@]+\.[^\s@]+$/";
+            bool txtOK,numOk,sensOK,mailOK = true;
+            foreach(string i in campoTxt)
+            {
+                bool ok = Regex.IsMatch(i, patronT);
+                if (!ok)
+                {
+                    txtOK = false;
+                }
+            }
+            return txtOK,numOK;
+        }
+        #endregion
         private void FrmUsuario_Load(object sender, EventArgs e)
         {
             ConfigDGV(gestion.ObtenerUsuarios());
@@ -97,6 +191,7 @@ namespace ProyectoCampo_JuanFer
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            auxUsuario = null;
             this.Close();
         }
 
@@ -112,6 +207,7 @@ namespace ProyectoCampo_JuanFer
                 txtApe.Text = fila.Cells["Apellido"].Value.ToString();
                 cmbRol.SelectedIndex = cmbRol.Items.IndexOf(Convert.ToString(fila.Cells["Rol"].Value));
                 txtUsu.Text = fila.Cells["Usuario"].Value.ToString();
+                txtPass.Text = fila.Cells["Contraseña"].Value.ToString();
                 txtDir.Text = fila.Cells["Direccion"].Value.ToString();
                 txtTel.Text = fila.Cells["Telefono"].Value.ToString();
                 txtMail.Text = fila.Cells["Email"].Value.ToString();
@@ -129,7 +225,6 @@ namespace ProyectoCampo_JuanFer
         private void btnCrearUs_Click(object sender, EventArgs e)
         {
             btnCancelar.Enabled = true;
-            btnGuardar.Enabled = true;
             btnDesbloquear.Enabled = false;
             btnCrearUs.Enabled = false;
             btnElimUs.Enabled = false;
@@ -138,12 +233,20 @@ namespace ProyectoCampo_JuanFer
             LimpiarDatos();
             HabilitarCampos();
             chkActivo.Checked = true;
-            txtDoc.Focus();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             ConfigDefaultForm();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            {
+                int resultado = -1;
+                CargaUsuario();
+                resultado = gestion.CrearUsuario(auxUsuario);
+            }
         }
     }
 }

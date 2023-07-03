@@ -18,8 +18,8 @@ namespace Negocio_BLL
         public int Login(string us, string pw) 
         {
             LoginUsuario Autenticar = new LoginUsuario();
-            Encriptador SecPass = new Encriptador();
-            int AuthOK = Autenticar.Login(us, SecPass.Encriptar(pw));
+            //Encriptador SecPass = new Encriptador();
+            int AuthOK = Autenticar.Login(us, Encriptador.EncriptarIrrev(pw));
             if (AuthOK == 3 & maxIntentos > 0)
             {
                 maxIntentos--;

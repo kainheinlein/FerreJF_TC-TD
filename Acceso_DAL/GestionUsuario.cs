@@ -27,7 +27,6 @@ namespace Acceso_DAL
                 cmd.Parameters.AddWithValue("@Bloqueado", bloq);
                 cmd.ExecuteNonQuery();
             }
-
             catch (Exception e)
             {
                 MessageBox.Show("Ha ocurrido un error: " + e.Message);
