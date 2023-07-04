@@ -65,12 +65,16 @@ namespace ProyectoCampo_JuanFer
                 {
                     textBox.Text = "";
                 }
+                if (control is Panel panel)
+                {
+                    panel.BackColor = Color.DimGray;
+                }
             }
             cmbRol.SelectedItem = null;
             chkBloqueado.Checked = false;
             txtDoc.Focus();
         }
-        private void ConfigDGV(DataTable dt)
+        /*private void ConfigDGV(DataTable dt)
         {
             dgvUsuarios.DataSource = dt;
             dgvUsuarios.Columns["Direccion"].Visible = false;
@@ -80,10 +84,10 @@ namespace ProyectoCampo_JuanFer
             dgvUsuarios.Columns["Contraseña"].Visible = false;
             dgvUsuarios.ReadOnly = true;
 
-        }
+        }*/
         private void CargaUsuario()
         {
-            bool okCampos = ExpReg();
+            bool okCampos = ValCampos();
 
             if (!okCampos)//Validacion caracteres
             {
@@ -160,31 +164,61 @@ namespace ProyectoCampo_JuanFer
             GuardarEnabled();
         }
 
-        private bool ExpReg()
+        private bool ValCampos()
         {
-            string[] campoTxt = {txtNom.Text,txtApe.Text,
-                txtDir.Text};
-            string[] campoNum = {txtDoc.Text,Text,txtTel.Text};
-            string[] campoSens = {txtUsu.Text,txtPass.Text};
-            string patronT = "/^[A-Za-z0-9]+$/g";
+            bool okCampos = false;
+            string errorMessage = "";
+            string patronT = "/^[A-Za-z]+$/g";
+            string patronD = "/^[A-Za-z0-9]+$/g";
             string patronN = "^[0-9]+$";
             string patronS = "^[A-Za-z0-9]+$";
             string patronM = @"/^[^\s@]+@[^\s@]+\.[^\s@]+$/";
             bool txtOK,numOk,sensOK,mailOK = true;
+            foreach(TextBox t in gbDatos.Controls)
+            {
+                if(t.Name == "txtNom" || t.Name == "txtApe")
+                {
+                    int error = 0;
+                    if(!Regex.IsMatch(t.Text,patronT))
+                    {
+                        foreach(Panel p in gbDatos.Controls)
+                        {
+                            if(p.Name == "p"+t.Name)
+                            {
+                                p.BackColor = Color.Red;
+                            }
+                        }
+                    }
+                }
+            }
+            foreach(Control c in camposTxt)
+            {
+                if(!Regex.IsMatch(c.Text,patronT))
+                {
+                    ;
+                }
+            }
+            /*for (int i = 0; i < camposTxt.Length; i++)
+                //Validacion campos solo texto
+                if(Regex.IsMatch(campoTxt[i], patronT))
+                {
+
+                }
             foreach(string i in campoTxt)
             {
                 bool ok = Regex.IsMatch(i, patronT);
                 if (!ok)
                 {
                     txtOK = false;
+                    break;
                 }
-            }
-            return txtOK,numOK;
+            }*/
+            return okCampos;
         }
         #endregion
         private void FrmUsuario_Load(object sender, EventArgs e)
         {
-            ConfigDGV(gestion.ObtenerUsuarios());
+            //ConfigDGV(gestion.ObtenerUsuarios());
             cmbRol.DataSource = roles;
             cmbRol.SelectedItem = null;
         }
@@ -244,8 +278,11 @@ namespace ProyectoCampo_JuanFer
         {
             {
                 int resultado = -1;
-                CargaUsuario();
-                resultado = gestion.CrearUsuario(auxUsuario);
+                if(ValCampos());
+                {
+                    CargaUsuario();
+                    resultado = gestion.CrearUsuario(auxUsuario);
+                }
             }
         }
     }
