@@ -46,6 +46,7 @@ namespace ProyectoCampo_JuanFer
                 }
             }
         }
+
         private void HabilitarCampos()
         {
             foreach (Control control in gbDatos.Controls)
@@ -57,6 +58,7 @@ namespace ProyectoCampo_JuanFer
                 cmbRol.Enabled = true;
             }
         }
+
         private void LimpiarDatos()
         {
             foreach (Control control in gbDatos.Controls)
@@ -74,7 +76,8 @@ namespace ProyectoCampo_JuanFer
             chkBloqueado.Checked = false;
             txtDoc.Focus();
         }
-        /*private void ConfigDGV(DataTable dt)
+
+        private void ConfigDGV(DataTable dt)
         {
             dgvUsuarios.DataSource = dt;
             dgvUsuarios.Columns["Direccion"].Visible = false;
@@ -84,18 +87,11 @@ namespace ProyectoCampo_JuanFer
             dgvUsuarios.Columns["Contraseña"].Visible = false;
             dgvUsuarios.ReadOnly = true;
 
-        }*/
+        }
+
         private void CargaUsuario()
         {
-            bool okCampos = ValCampos();
-
-            if (!okCampos)//Validacion caracteres
-            {
-                LimpiarDatos();
-                txtMensaje.Text = "Los datos ingresados no cumplen con el formato requerido, " +
-                    "ingrese los datos sin espacios ni caracteres especiales";
-            }
-            else
+            if (ValCampos())//Validacion caracteres
             {
                 auxUsuario = new UsuarioBE();
                 auxUsuario.dni = Convert.ToInt32(txtDoc.Text);
@@ -106,13 +102,13 @@ namespace ProyectoCampo_JuanFer
                 auxUsuario.pass = Encriptador.EncriptarIrrev(txtPass.Text);
                 auxUsuario.bloq = chkActivo.Checked;
                 auxUsuario.estado = chkActivo.Checked;
-                auxUsuario.dir = txtDir.Text;
-                auxUsuario.tel = Convert.ToInt32(txtTel.Text);
-                auxUsuario.email = txtMail.Text;
+                if(txtDir.Text != string.Empty) { auxUsuario.dir = txtDir.Text; }
+                if(txtTel.Text != string.Empty) { auxUsuario.tel = Convert.ToInt32(txtTel.Text); }
+                if(txtMail.Text != string.Empty) { auxUsuario.email = txtMail.Text; }
                 txtMensaje.Text = "CargaUsuario OK";
             }
-
         }
+
         private void GuardarEnabled()
         {
             if (txtNom.Text != "" & txtApe.Text != "" & txtDoc.Text != ""
@@ -125,36 +121,75 @@ namespace ProyectoCampo_JuanFer
                 btnGuardar.Enabled = false;
             }
         }
+
+        private void CampoError(string campo)
+        //Marcar en rojo los campos con validacion no ok
+        {
+            foreach (Control p in gbDatos.Controls)
+            {
+                if (p is Panel & (p.Name == "p" + campo))
+                {
+                    p.BackColor = Color.Red;
+                    break;
+                }
+            }
+        }
         #endregion
 
         #region ValidacionCampos
         private void txtDoc_TextChanged(object sender, EventArgs e)
         {
             txtMensaje.Clear();
+            ptxtDoc.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void txtNom_TextChanged(object sender, EventArgs e)
         {
             txtMensaje.Clear();
+            ptxtNom.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void txtApe_TextChanged(object sender, EventArgs e)
         {
             txtMensaje.Clear();
+            ptxtApe.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void txtUsu_TextChanged(object sender, EventArgs e)
         {
             txtMensaje.Clear();
+            ptxtUsu.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void txtPass_TextChanged(object sender, EventArgs e)
         {
             txtMensaje.Clear();
+            ptxtPass.BackColor = Color.DimGray;
+            GuardarEnabled();
+        }
+
+        private void txtDir_TextChanged(object sender, EventArgs e)
+        {
+            txtMensaje.Clear();
+            ptxtDir.BackColor = Color.DimGray;
+            GuardarEnabled();
+        }
+
+        private void txtTel_TextChanged(object sender, EventArgs e)
+        {
+            txtMensaje.Clear();
+            ptxtTel.BackColor = Color.DimGray;
+            GuardarEnabled();
+        }
+
+        private void txtMail_TextChanged(object sender, EventArgs e)
+        {
+            txtMensaje.Clear();
+            ptxtMail.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
@@ -166,59 +201,120 @@ namespace ProyectoCampo_JuanFer
 
         private bool ValCampos()
         {
-            bool okCampos = false;
-            string errorMessage = "";
-            string patronT = "/^[A-Za-z]+$/g";
-            string patronD = "/^[A-Za-z0-9]+$/g";
+            string patronT = @"^[a-zA-Z\s]+$";
+            string patronD = @"^[A-Za-z0-9\s]+$";
             string patronN = "^[0-9]+$";
             string patronS = "^[A-Za-z0-9]+$";
-            string patronM = @"/^[^\s@]+@[^\s@]+\.[^\s@]+$/";
-            bool txtOK,numOk,sensOK,mailOK = true;
-            foreach(TextBox t in gbDatos.Controls)
-            {
-                if(t.Name == "txtNom" || t.Name == "txtApe")
+            string patronM = @"^[^\s@]+@[^\s@]+\.[^\s@]+$";
+            bool txtOK,numOK,sensOK,dirOK,mailOK;
+            txtOK = numOK = sensOK = dirOK = mailOK = true;
+
+            foreach(Control t in gbDatos.Controls)
+            {   
+                if(t is TextBox)
                 {
-                    int error = 0;
-                    if(!Regex.IsMatch(t.Text,patronT))
+                    //Validacion Nombre y Apellido
+                    if (t.Name == "txtNom" || t.Name == "txtApe")
                     {
-                        foreach(Panel p in gbDatos.Controls)
+                        if (!Regex.IsMatch(t.Text, patronT))
                         {
-                            if(p.Name == "p"+t.Name)
+                            CampoError(t.Name);
+                            txtOK = false;
+                        }
+                    }
+                    else
+                    {
+                        //Validacion Direccion
+                        if (t.Name == "txtDir")
+                        {
+                            if (!Regex.IsMatch(t.Text, patronD) & t.Text != string.Empty)
                             {
-                                p.BackColor = Color.Red;
+                                CampoError(t.Name);
+                                dirOK = false;
+                            }
+                        }
+                        else
+                        {
+                            //Validacion User y Pass
+                            if (t.Name == "txtUsu" || t.Name == "txtPass")
+                            {
+                                if (!Regex.IsMatch(t.Text, patronS))
+                                {
+                                    CampoError (t.Name);
+                                    sensOK = false;
+                                }
+                            }
+                            else
+                            {
+                                //Validacion DNI y Telefono
+                                if ((t.Name == "txtTel" & t.Text != string.Empty) || t.Name == "txtDoc")
+                                {   
+                                    if (!Regex.IsMatch(t.Text, patronN))
+                                    {
+                                        CampoError(t.Name);
+                                        numOK = false;
+                                    }
+                                }
+                                else
+                                {
+                                    //Validacion Mail
+                                    if (t.Name == "txtMail" & t.Text != string.Empty)
+                                    {
+                                        if (!Regex.IsMatch(t.Text, patronM))
+                                        {
+                                            CampoError(t.Name);
+                                            mailOK = false;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-            foreach(Control c in camposTxt)
+            #region Texto de error en Campo Mensajes
+            if (!txtOK)
             {
-                if(!Regex.IsMatch(c.Text,patronT))
-                {
-                    ;
-                }
+                txtMensaje.Text = txtMensaje.Text + "Campos Nombre y/o Apellido contienen caracteres no validos." +
+                    "Ingrese solo letras por favor." + Environment.NewLine;
             }
-            /*for (int i = 0; i < camposTxt.Length; i++)
-                //Validacion campos solo texto
-                if(Regex.IsMatch(campoTxt[i], patronT))
-                {
 
-                }
-            foreach(string i in campoTxt)
+            if (!numOK)
             {
-                bool ok = Regex.IsMatch(i, patronT);
-                if (!ok)
-                {
-                    txtOK = false;
-                    break;
-                }
-            }*/
-            return okCampos;
+                txtMensaje.Text = txtMensaje.Text + "Campos DNI y/o Telefono contienen caracteres no validos." +
+                    "Ingrese solo numeros por favor." + Environment.NewLine;
+            }
+
+            if (!dirOK)
+            {
+                txtMensaje.Text = txtMensaje.Text + "Campo Direccion contiene caracteres no validos." +
+                    "Ingrese solo letras y numeros por favor." + Environment.NewLine;
+            }
+
+            if (!sensOK)
+            {
+                txtMensaje.Text = txtMensaje.Text + "Campos Usuario y/o Contraseña contienen caracteres no validos." +
+                    "No se permiten espacios ni caracteres especiales." + Environment.NewLine;
+            }
+
+            if (!mailOK)
+            {
+                txtMensaje.Text = txtMensaje.Text + "Campo eMail contiene caracteres no validos." +
+                    "Respete el formato xxxx@xxx.xxx, sin espacios ni caracteres especiales." + Environment.NewLine;
+            }
+            #endregion
+
+            if(!txtOK || !sensOK || !dirOK || !numOK || !mailOK)
+            {
+                txtDoc.Focus();
+                return false;
+            }
+            else { return true; }
         }
         #endregion
         private void FrmUsuario_Load(object sender, EventArgs e)
         {
-            //ConfigDGV(gestion.ObtenerUsuarios());
+            ConfigDGV(gestion.ObtenerUsuarios());
             cmbRol.DataSource = roles;
             cmbRol.SelectedItem = null;
         }
