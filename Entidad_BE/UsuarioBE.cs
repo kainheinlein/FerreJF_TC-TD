@@ -10,31 +10,103 @@ namespace Entidad_BE
     public class UsuarioBE
     {
         private int _cod;
+
+        public int cod
+        {
+            get { return _cod; }
+            set { _cod = value; }
+        }
+
         private string _nomb;
+
+        public string nomb
+        {
+            get { return _nomb; }
+            set { _nomb = value; }
+        }
+
         private string _ape;
+
+        public string ape
+        {
+            get { return _ape; }
+            set { _ape = value; }
+        }
+
         private int _dni;
+
+        public int dni
+        {
+            get { return _dni; }
+            set { _dni = value; }
+        }
+
         private string _user;
+
+        public string user
+        {
+            get { return _user; }
+            set { _user = value; }
+        }
+
         private string _pass;
+
+        public string pass
+        {
+            get { return _pass; }
+            set { _pass = value; }
+        }
+
         private string _rol;
+
+        public string rol
+        {
+            get { return _rol; }
+            set { _rol = value; }
+        }
+
         private string _dir;
+
+        public string dir
+        {
+            get { return _dir; }
+            set { _dir = value; }
+        }
+
         private int _tel;
+
+        public int tel
+        {
+            get { return _tel; }
+            set { _tel = value; }
+        }
+
         private string _email;
+
+        public string email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+
         private Boolean _estado;
+
+        public Boolean estado
+        {
+            get { return _estado; }
+            set { _estado = value; }
+        }
+
         private Boolean _bloq;
+
+        public Boolean bloq
+        {
+            get { return _bloq; }
+            set { _bloq = value; }
+        }
+
 
         public UsuarioBE(){}
 
-        public int cod { get => _cod; set => _cod = value; }
-        public string nomb { get => _nomb; set => _nomb = value; }
-        public string ape { get => _ape; set => _ape = value; }
-        public int dni { get => _dni; set => _dni = value; }
-        public string user { get => _user; set => _user = value; }
-        public string pass { get => _pass; set => _pass = value; }
-        public string dir { get => _dir; set => _dir = value; }
-        public int tel { get => _tel; set => _tel = value; }
-        public string email { get => _email; set => _email = value; }
-        public bool estado { get => _estado; set => _estado = value; }
-        public bool bloq { get => _bloq; set => _bloq = value; }
-        public string rol { get => _rol; set => _rol = value; }
     }
 }
