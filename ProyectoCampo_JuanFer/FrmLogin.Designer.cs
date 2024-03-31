@@ -47,9 +47,10 @@
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(85, 186);
+            this.txtUsuario.Location = new System.Drawing.Point(90, 183);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(194, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(147, 20);
             this.txtUsuario.TabIndex = 0;
             this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
             // 
@@ -57,7 +58,8 @@
             // 
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(82, 168);
+            this.lblUsuario.Location = new System.Drawing.Point(135, 167);
+            this.lblUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(57, 15);
             this.lblUsuario.TabIndex = 1;
@@ -67,7 +69,8 @@
             // 
             this.lblContra.AutoSize = true;
             this.lblContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContra.Location = new System.Drawing.Point(82, 218);
+            this.lblContra.Location = new System.Drawing.Point(123, 209);
+            this.lblContra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblContra.Name = "lblContra";
             this.lblContra.Size = new System.Drawing.Size(80, 15);
             this.lblContra.TabIndex = 3;
@@ -75,9 +78,10 @@
             // 
             // txtContra
             // 
-            this.txtContra.Location = new System.Drawing.Point(85, 236);
+            this.txtContra.Location = new System.Drawing.Point(90, 225);
+            this.txtContra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtContra.Name = "txtContra";
-            this.txtContra.Size = new System.Drawing.Size(194, 20);
+            this.txtContra.Size = new System.Drawing.Size(147, 20);
             this.txtContra.TabIndex = 2;
             this.txtContra.UseSystemPasswordChar = true;
             this.txtContra.TextChanged += new System.EventHandler(this.txtContra_TextChanged);
@@ -87,7 +91,8 @@
             // 
             this.lblVentana.AutoSize = true;
             this.lblVentana.Font = new System.Drawing.Font("Arial Rounded MT Bold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVentana.Location = new System.Drawing.Point(128, 113);
+            this.lblVentana.Location = new System.Drawing.Point(110, 122);
+            this.lblVentana.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVentana.Name = "lblVentana";
             this.lblVentana.Size = new System.Drawing.Size(106, 32);
             this.lblVentana.TabIndex = 4;
@@ -97,34 +102,38 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(5, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(7, 23);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(343, 68);
+            this.pictureBox1.Size = new System.Drawing.Size(307, 86);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cambiarIdiomaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(348, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
+            this.menuStrip1.Size = new System.Drawing.Size(322, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // cambiarIdiomaToolStripMenuItem
             // 
             this.cambiarIdiomaToolStripMenuItem.Name = "cambiarIdiomaToolStripMenuItem";
-            this.cambiarIdiomaToolStripMenuItem.Size = new System.Drawing.Size(104, 20);
+            this.cambiarIdiomaToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.cambiarIdiomaToolStripMenuItem.Text = "Cambiar Idioma";
             // 
             // lblError
             // 
             this.lblError.AutoSize = true;
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(30, 269);
+            this.lblError.Location = new System.Drawing.Point(18, 175);
+            this.lblError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(0, 13);
             this.lblError.TabIndex = 7;
@@ -133,9 +142,10 @@
             // 
             this.btnIniciar.Enabled = false;
             this.btnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciar.Location = new System.Drawing.Point(134, 285);
+            this.btnIniciar.Location = new System.Drawing.Point(106, 258);
+            this.btnIniciar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(98, 23);
+            this.btnIniciar.Size = new System.Drawing.Size(115, 46);
             this.btnIniciar.TabIndex = 8;
             this.btnIniciar.Text = "Iniciar Sesion";
             this.btnIniciar.UseVisualStyleBackColor = false;
@@ -145,9 +155,10 @@
             // 
             this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(134, 323);
+            this.btnCancelar.Location = new System.Drawing.Point(106, 307);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(98, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(115, 31);
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -156,10 +167,11 @@
             // lblSinConexion
             // 
             this.lblSinConexion.AutoSize = true;
-            this.lblSinConexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSinConexion.Location = new System.Drawing.Point(2, 358);
+            this.lblSinConexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSinConexion.Location = new System.Drawing.Point(7, 360);
+            this.lblSinConexion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSinConexion.Name = "lblSinConexion";
-            this.lblSinConexion.Size = new System.Drawing.Size(112, 15);
+            this.lblSinConexion.Size = new System.Drawing.Size(132, 15);
             this.lblSinConexion.TabIndex = 10;
             this.lblSinConexion.Text = "Iniciar sin conexion";
             this.lblSinConexion.Click += new System.EventHandler(this.lblSinConexion_Click);
@@ -170,7 +182,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 380);
+            this.ClientSize = new System.Drawing.Size(322, 380);
             this.Controls.Add(this.lblSinConexion);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnIniciar);
@@ -186,6 +198,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -23,6 +23,7 @@ namespace ProyectoCampo_JuanFer
         }
 
         UsuarioBLL usuario = new UsuarioBLL();
+
         #region Funciones
         public void IniciarEnabled()
         {

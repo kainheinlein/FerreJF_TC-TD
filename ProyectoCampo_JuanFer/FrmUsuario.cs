@@ -374,7 +374,7 @@ namespace ProyectoCampo_JuanFer
         {
             {
                 int resultado = -1;
-                if(ValCampos());
+                if(ValCampos())
                 {
                     CargaUsuario();
                     resultado = gestion.CrearUsuario(auxUsuario);
