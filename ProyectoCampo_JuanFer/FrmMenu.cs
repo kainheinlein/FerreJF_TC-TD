@@ -109,5 +109,10 @@ namespace ProyectoCampo_JuanFer
                 frmUsuario.BringToFront();
             }
         }
+
+        private void FrmMenu_Resize(object sender, EventArgs e)
+        {
+            this.Refresh();
+        }
     }
 }
