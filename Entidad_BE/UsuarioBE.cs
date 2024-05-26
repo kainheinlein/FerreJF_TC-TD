@@ -105,7 +105,6 @@ namespace Entidad_BE
             set { _bloq = value; }
         }
 
-
         public UsuarioBE(){}
 
     }

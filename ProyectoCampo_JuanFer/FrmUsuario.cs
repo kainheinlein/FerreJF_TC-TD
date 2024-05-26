@@ -314,9 +314,13 @@ namespace ProyectoCampo_JuanFer
         #endregion
         private void FrmUsuario_Load(object sender, EventArgs e)
         {
-            ConfigDGV(gestion.ObtenerUsuarios());
-            cmbRol.DataSource = roles;
-            cmbRol.SelectedItem = null;
+            try
+            {
+                ConfigDGV(gestion.ObtenerUsuarios());
+                cmbRol.DataSource = roles;
+                cmbRol.SelectedItem = null;
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -383,6 +387,11 @@ namespace ProyectoCampo_JuanFer
         }
 
         private void btnModUs_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDesbloquear_Click(object sender, EventArgs e)
         {
 
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using Acceso_DAL;
@@ -13,27 +14,33 @@ namespace Negocio_BLL
     {
         public int maxIntentos = 3;
         private UsuarioBE usuario;
-        private GestionUsuario gestion;
+        private MP_Usuario mpUsuario = new MP_Usuario();
 
         public int Login(string us, string pw) 
         {
-            LoginUsuario Autenticar = new LoginUsuario();
-            int AuthOK = Autenticar.Login(us, Encriptador.EncriptarIrrev(pw));
-            if (AuthOK == 3 & maxIntentos > 0)
+            int AuthOK;
+            if (SessionManager.GetInstance.logged == false)
             {
-                maxIntentos--;
+                AuthOK = mpUsuario.Login(us, Encriptador.EncriptarIrrev(pw));
+                if (AuthOK == 1)
+                {
+                    usuario = new UsuarioBE();
+                    usuario.user = us;
+                    SessionManager.GetInstance.Login(usuario);
+                    maxIntentos = 3;
+                }
             }
-            if (maxIntentos == 0) 
-            { 
-                gestion = new GestionUsuario();
-                gestion.ActualizarBloqueo(us, true);
-                AuthOK = 4; 
-            }
-            if (AuthOK == 1)
+            else
             {
-                usuario = new UsuarioBE();
-                usuario.user = us;
-                SessionManager.GetInstance.Login(usuario);
+                usuario = SessionManager.GetInstance.UsuarioActual();
+                if (usuario.user == us) { AuthOK = 6; }
+                else {  AuthOK = 7; }
+            }
+            if(AuthOK != 1) { maxIntentos--; } 
+            if(maxIntentos == 0)
+            {
+                mpUsuario.ActualizarBloqueo(us, true);
+                AuthOK = 5;
             }
             return AuthOK;
         }

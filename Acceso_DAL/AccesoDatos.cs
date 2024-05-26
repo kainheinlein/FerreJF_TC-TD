@@ -47,7 +47,7 @@ namespace Acceso_DAL
             } 
         }
 
-        public DataTable Leer (string sp, SqlParameter[] datos)
+        public DataTable LeerTabla (string sp, SqlParameter[] datos)
         {
             AbrirConexion();
             DataTable dt = new DataTable();
@@ -64,6 +64,50 @@ namespace Acceso_DAL
             CerrarConexion();
 
             return dt;
+        }
+
+        public int Escribir(string sp, SqlParameter[] parametros)
+        {
+            int result = 0;
+
+            try
+            {
+                AbrirConexion();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sp;
+                cmd.Connection = conexion;
+                cmd.Parameters.AddRange(parametros);
+
+                result = cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                result = -1;
+            }
+            finally
+            {
+                CerrarConexion();
+            }
+            return result;
+        }
+
+        public int Consulta(string sp, SqlParameter[] parametros)
+        {
+            int result;
+
+            AbrirConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = sp;
+            cmd.Connection = conexion;
+            cmd.Parameters.AddRange(parametros);
+            cmd.Parameters.Add("@Result", SqlDbType.Int).Direction = ParameterDirection.Output;
+            cmd.ExecuteNonQuery();
+            result = Convert.ToInt32(cmd.Parameters["@Result"].Value);
+            CerrarConexion();
+
+            return result;
         }
     }
 }
