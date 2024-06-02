@@ -110,9 +110,6 @@ namespace ProyectoCampo_JuanFer
                         //Mensaje de label de Error
                         switch (authOK)
                         {
-                            case -1:
-                                lblError.Text = "Hubo un error de conexion con la Base de Datos. Contacte al Administrador";
-                                break;
                             case 0:
                                 lblError.Text = "El usuario ingresado no existe";
                                 break;
@@ -143,7 +140,7 @@ namespace ProyectoCampo_JuanFer
                 }
                 catch(Exception ex) 
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Error de comunicacion con la Base de Datos: " + ex.Message);
                 }
             }
         }

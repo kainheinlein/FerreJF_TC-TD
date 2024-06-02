@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using Entidad_BE;
 using Negocio_BLL;
 using Servicios;
-
+//Modificar habilitacion btnGuardar, Realizar desbloqueo y persistencia, verificar habilitacion de botones al seleccionar celdas (cancelar, guardar)
 namespace ProyectoCampo_JuanFer
 {
     public partial class FrmUsuario : Form
@@ -22,6 +22,8 @@ namespace ProyectoCampo_JuanFer
         }
         UsuarioBE auxUsuario;
         GestionBLL gestion = new GestionBLL();
+        UsuarioBLL usuarioBLL = new UsuarioBLL();
+        int varMod = 0; //Indica si la modificacion esta activa
         List<string> roles = new List<string>() { "Cajero", "Vendedor", "Administrador" };
 
         #region Funciones
@@ -32,10 +34,11 @@ namespace ProyectoCampo_JuanFer
             btnCancelar.Enabled = false;
             cmbRol.Enabled = false;
             btnCrearUs.Enabled = true;
-            btnModUs.Enabled = true;
-            btnElimUs.Enabled = true;
-            btnDesbloquear.Enabled = true;
+            btnModUs.Enabled = false;
+            btnElimUs.Enabled = false;
+            btnDesbloquear.Enabled = false;
             dgvUsuarios.Enabled = true;
+            varMod = 0;
             LimpiarDatos();
 
             foreach (Control control in gbDatos.Controls)
@@ -86,10 +89,15 @@ namespace ProyectoCampo_JuanFer
             dgvUsuarios.Columns["Codigo"].Visible = false;
             dgvUsuarios.Columns["Contraseña"].Visible = false;
             dgvUsuarios.ReadOnly = true;
-
         }
 
-        private void CargaUsuario()
+        private void ActualizarDGV()
+        {
+            dgvUsuarios.DataSource = gestion.ObtenerUsuarios();
+            ConfigDefaultForm();
+        }
+
+        private UsuarioBE CargaUsuario()
         {
             if (ValCampos())//Validacion caracteres
             {
@@ -100,13 +108,18 @@ namespace ProyectoCampo_JuanFer
                 auxUsuario.rol = cmbRol.SelectedValue.ToString();
                 auxUsuario.user = txtUsu.Text;
                 auxUsuario.pass = Encriptador.EncriptarIrrev(txtPass.Text);
-                auxUsuario.bloq = chkActivo.Checked;
                 auxUsuario.estado = chkActivo.Checked;
-                if(txtDir.Text != string.Empty) { auxUsuario.dir = txtDir.Text; }
-                if(txtTel.Text != string.Empty) { auxUsuario.tel = Convert.ToInt32(txtTel.Text); }
-                if(txtMail.Text != string.Empty) { auxUsuario.email = txtMail.Text; }
-                txtMensaje.Text = "CargaUsuario OK";
+                auxUsuario.bloq = chkBloqueado.Checked;
+                if (txtDir.Text == string.Empty) { auxUsuario.dir = " "; }
+                else { auxUsuario.dir = txtDir.Text; }
+                if (txtTel.Text == string.Empty) { auxUsuario.tel = " "; }
+                else { auxUsuario.tel = txtTel.Text; }
+                if (txtMail.Text == string.Empty) { auxUsuario.email = " "; }
+                else { auxUsuario.email = txtMail.Text; }
+
+                return auxUsuario;
             }
+            return null;
         }
 
         private void GuardarEnabled()
@@ -134,68 +147,77 @@ namespace ProyectoCampo_JuanFer
                 }
             }
         }
+
+        private UsuarioBE ExtraerDatos (DataGridViewRow fila)
+        {
+            string[] datos = new string [fila.Cells.Count];
+
+            for(int i = 0; i < fila.Cells.Count;i++)
+            {
+                datos[i] = fila.Cells[i].Value.ToString();
+            }
+            auxUsuario = new UsuarioBE();
+            return auxUsuario.CrearUsuario(datos);
+        }
+
+        private void LlenarMensaje(string linea)
+        {
+            txtMensaje.Text = linea + Environment.NewLine + Environment.NewLine + txtMensaje.Text;
+        }
+
         #endregion
 
         #region ValidacionCampos
         private void txtDoc_TextChanged(object sender, EventArgs e)
         {
-            txtMensaje.Clear();
             ptxtDoc.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void txtNom_TextChanged(object sender, EventArgs e)
         {
-            txtMensaje.Clear();
             ptxtNom.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void txtApe_TextChanged(object sender, EventArgs e)
         {
-            txtMensaje.Clear();
             ptxtApe.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void txtUsu_TextChanged(object sender, EventArgs e)
         {
-            txtMensaje.Clear();
             ptxtUsu.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void txtPass_TextChanged(object sender, EventArgs e)
         {
-            txtMensaje.Clear();
             ptxtPass.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void txtDir_TextChanged(object sender, EventArgs e)
         {
-            txtMensaje.Clear();
             ptxtDir.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void txtTel_TextChanged(object sender, EventArgs e)
         {
-            txtMensaje.Clear();
             ptxtTel.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void txtMail_TextChanged(object sender, EventArgs e)
         {
-            txtMensaje.Clear();
             ptxtMail.BackColor = Color.DimGray;
             GuardarEnabled();
         }
 
         private void cmbRol_SelectedValueChanged(object sender, EventArgs e)
         {
-            txtMensaje.Clear();
             GuardarEnabled();
         }
 
@@ -206,12 +228,12 @@ namespace ProyectoCampo_JuanFer
             string patronN = "^[0-9]+$";
             string patronS = "^[A-Za-z0-9]+$";
             string patronM = @"^[^\s@]+@[^\s@]+\.[^\s@]+$";
-            bool txtOK,numOK,sensOK,dirOK,mailOK;
+            bool txtOK, numOK, sensOK, dirOK, mailOK;
             txtOK = numOK = sensOK = dirOK = mailOK = true;
 
-            foreach(Control t in gbDatos.Controls)
-            {   
-                if(t is TextBox)
+            foreach (Control t in gbDatos.Controls)
+            {
+                if (t is TextBox)
                 {
                     //Validacion Nombre y Apellido
                     if (t.Name == "txtNom" || t.Name == "txtApe")
@@ -240,7 +262,7 @@ namespace ProyectoCampo_JuanFer
                             {
                                 if (!Regex.IsMatch(t.Text, patronS))
                                 {
-                                    CampoError (t.Name);
+                                    CampoError(t.Name);
                                     sensOK = false;
                                 }
                             }
@@ -248,7 +270,7 @@ namespace ProyectoCampo_JuanFer
                             {
                                 //Validacion DNI y Telefono
                                 if ((t.Name == "txtTel" & t.Text != string.Empty) || t.Name == "txtDoc")
-                                {   
+                                {
                                     if (!Regex.IsMatch(t.Text, patronN))
                                     {
                                         CampoError(t.Name);
@@ -275,36 +297,36 @@ namespace ProyectoCampo_JuanFer
             #region Texto de error en Campo Mensajes
             if (!txtOK)
             {
-                txtMensaje.Text = txtMensaje.Text + "Campos Nombre y/o Apellido contienen caracteres no validos." +
-                    "Ingrese solo letras por favor." + Environment.NewLine;
+                LlenarMensaje("Campos Nombre y/o Apellido contienen caracteres no validos." +
+                    "Ingrese solo letras por favor.");
             }
 
             if (!numOK)
             {
-                txtMensaje.Text = txtMensaje.Text + "Campos DNI y/o Telefono contienen caracteres no validos." +
-                    "Ingrese solo numeros por favor." + Environment.NewLine;
+                LlenarMensaje("Campos DNI y/o Telefono contienen caracteres no validos." +
+                    "Ingrese solo numeros por favor.");
             }
 
             if (!dirOK)
             {
-                txtMensaje.Text = txtMensaje.Text + "Campo Direccion contiene caracteres no validos." +
-                    "Ingrese solo letras y numeros por favor." + Environment.NewLine;
+                LlenarMensaje("Campo Direccion contiene caracteres no validos." +
+                    "Ingrese solo letras y numeros por favor.");
             }
 
             if (!sensOK)
             {
-                txtMensaje.Text = txtMensaje.Text + "Campos Usuario y/o Contraseña contienen caracteres no validos." +
-                    "No se permiten espacios ni caracteres especiales." + Environment.NewLine;
+                LlenarMensaje("Campos Usuario y/o Contraseña contienen caracteres no validos." +
+                    "No se permiten espacios ni caracteres especiales.");
             }
 
             if (!mailOK)
             {
-                txtMensaje.Text = txtMensaje.Text + "Campo eMail contiene caracteres no validos." +
-                    "Respete el formato xxxx@xxx.xxx, sin espacios ni caracteres especiales." + Environment.NewLine;
+                LlenarMensaje("Campo eMail contiene caracteres no validos." +
+                    "Respete el formato xxxx@xxx.xxx, sin espacios ni caracteres especiales.");
             }
             #endregion
 
-            if(!txtOK || !sensOK || !dirOK || !numOK || !mailOK)
+            if (!txtOK || !sensOK || !dirOK || !numOK || !mailOK)
             {
                 txtDoc.Focus();
                 return false;
@@ -318,7 +340,7 @@ namespace ProyectoCampo_JuanFer
             {
                 ConfigDGV(gestion.ObtenerUsuarios());
                 cmbRol.DataSource = roles;
-                cmbRol.SelectedItem = null;
+                ConfigDefaultForm();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
@@ -345,15 +367,31 @@ namespace ProyectoCampo_JuanFer
                 txtDir.Text = fila.Cells["Direccion"].Value.ToString();
                 txtTel.Text = fila.Cells["Telefono"].Value.ToString();
                 txtMail.Text = fila.Cells["Email"].Value.ToString();
-                if (Convert.ToBoolean(fila.Cells["Activo"].Value) == true)
+                if(Convert.ToBoolean(fila.Cells["Activo"].Value) == true)
                 {
                     chkActivo.Checked = true;
+                    btnElimUs.Enabled = true;
+                }
+                else
+                {
+                    chkActivo.Checked = false;
+                    btnElimUs.Enabled = false;
                 }
                 if (Convert.ToBoolean(fila.Cells["Bloqueado"].Value) == true)
                 {
                     chkBloqueado.Checked = true;
+                    btnDesbloquear.Enabled = true;
                 }
+                else
+                { 
+                    chkBloqueado.Checked = false;
+                    btnDesbloquear.Enabled = false; 
+                }
+                btnCancelar.Enabled = true;
+                btnModUs.Enabled = true;
+                btnGuardar.Enabled = false;
             }
+            else { ConfigDefaultForm(); }
         }
 
         private void btnCrearUs_Click(object sender, EventArgs e)
@@ -376,24 +414,110 @@ namespace ProyectoCampo_JuanFer
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            UsuarioBE us = CargaUsuario();
+            int error = 0;
+
+            if (varMod == 0)
             {
-                int resultado = -1;
-                if(ValCampos())
+                foreach (DataGridViewRow fila in dgvUsuarios.Rows)
                 {
-                    CargaUsuario();
-                    resultado = gestion.CrearUsuario(auxUsuario);
+                    if (Convert.ToInt32(fila.Cells[1].Value) == us.dni)
+                    {
+                        LlenarMensaje("El DNI ingresado ya cuenta con un usuario");
+                        ConfigDefaultForm();
+                        error = 1;
+                        break;
+                    }
+                    else
+                    {
+                        if (fila.Cells[4].Value.ToString() == us.user)
+                        {
+                            LlenarMensaje("El usuario ingresado ya existe");
+                            txtUsu.Text = "";
+                            error = 1;
+                            break;
+                        }
+                    }
+                }
+                if (error == 0)
+                {
+                    try
+                    {
+                        usuarioBLL.CrearUsuario(us);
+                        ActualizarDGV();
+                        LlenarMensaje($"El usuario -- {us.user} -- fue creado exitosamente");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocurrio un error en la creacion de usuario: " + ex.Message);
+                        ConfigDefaultForm();
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+
+                    us.cod = Convert.ToInt32(dgvUsuarios.SelectedRows[0].Cells[0].Value);
+                    usuarioBLL.ActualizarUsuario(us);
+                    ActualizarDGV();
+                    LlenarMensaje($"El usuario -- {us.user} -- actualizado correctamente");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrio un error en la actualizacion del usuario: " + ex.Message);
+                    ConfigDefaultForm();
                 }
             }
         }
 
         private void btnModUs_Click(object sender, EventArgs e)
         {
-
+            varMod = 1;
+            btnCancelar.Enabled = true;
+            btnDesbloquear.Enabled = false;
+            btnCrearUs.Enabled = false;
+            btnElimUs.Enabled = false;
+            btnModUs.Enabled = false;
+            dgvUsuarios.Enabled = false;
+            chkActivo.Enabled = true;
+            btnGuardar.Enabled = true;
+            HabilitarCampos();
         }
 
         private void btnDesbloquear_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (MessageBox.Show("Desea continuar con el desbloqueo?","Desbloquear Usuario",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    usuarioBLL.DesbloquearUS(ExtraerDatos(dgvUsuarios.SelectedRows[0]));
+                    LlenarMensaje("Usuario desbloqueado exitosamente");
+                    ActualizarDGV();
+                }               
+            }
+            catch (Exception ex) { MessageBox.Show("Error de comunicacion con la Base de datos. Contacte al Administrador: " + ex.Message); }
+        }
 
+        private void btnElimUs_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UsuarioBE us = ExtraerDatos(dgvUsuarios.SelectedRows[0]);
+                if(MessageBox.Show($"Desea eliminar el usuario -- {us.user}  -- ?","Eliminar Usuario", 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    usuarioBLL.EliminarUs(us);
+                    ActualizarDGV();
+                    LlenarMensaje($"Baja de usuario -- {us.user} -- exitosa");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo eliminar el usuario seleccionado: " + ex.Message);
+                ConfigDefaultForm();
+            }
         }
     }
 }

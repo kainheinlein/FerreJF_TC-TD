@@ -49,26 +49,46 @@ namespace Acceso_DAL
 
         public DataTable LeerTabla (string sp, SqlParameter[] datos)
         {
-            AbrirConexion();
-            DataTable dt = new DataTable();
-            SqlDataAdapter ad = new SqlDataAdapter();
-            ad.SelectCommand = new SqlCommand();
-            ad.SelectCommand.CommandType = CommandType.StoredProcedure;
-            ad.SelectCommand.CommandText = sp;
-            if (datos != null)
+            try
             {
-                ad.SelectCommand.Parameters.AddRange(datos);
-            }
-            ad.SelectCommand.Connection = conexion;
-            ad.Fill(dt);
-            CerrarConexion();
+                AbrirConexion();
+                DataTable dt = new DataTable();
+                SqlDataAdapter ad = new SqlDataAdapter();
+                ad.SelectCommand = new SqlCommand();
+                ad.SelectCommand.CommandType = CommandType.StoredProcedure;
+                ad.SelectCommand.CommandText = sp;
+                if (datos != null)
+                {
+                    ad.SelectCommand.Parameters.AddRange(datos);
+                }
+                ad.SelectCommand.Connection = conexion;
+                ad.Fill(dt);
 
-            return dt;
+                return dt;
+            }
+            catch (Exception e) { throw e;}
+            finally { CerrarConexion(); }
         }
 
-        public int Escribir(string sp, SqlParameter[] parametros)
+        public void Escribir(string sp, SqlParameter[] parametros)
         {
-            int result = 0;
+            try
+            {
+                AbrirConexion();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sp;
+                cmd.Connection = conexion;
+                cmd.Parameters.AddRange(parametros);
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception e) { throw e; }
+            finally { CerrarConexion(); }
+        }
+
+        public int Consulta(string sp, SqlParameter[] parametros)
+        {
+            int result;
 
             try
             {
@@ -78,36 +98,13 @@ namespace Acceso_DAL
                 cmd.CommandText = sp;
                 cmd.Connection = conexion;
                 cmd.Parameters.AddRange(parametros);
+                cmd.Parameters.Add("@Result", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.ExecuteNonQuery();
 
-                result = cmd.ExecuteNonQuery();
+                return result = Convert.ToInt32(cmd.Parameters["@Result"].Value);
             }
-            catch
-            {
-                result = -1;
-            }
-            finally
-            {
-                CerrarConexion();
-            }
-            return result;
-        }
-
-        public int Consulta(string sp, SqlParameter[] parametros)
-        {
-            int result;
-
-            AbrirConexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = sp;
-            cmd.Connection = conexion;
-            cmd.Parameters.AddRange(parametros);
-            cmd.Parameters.Add("@Result", SqlDbType.Int).Direction = ParameterDirection.Output;
-            cmd.ExecuteNonQuery();
-            result = Convert.ToInt32(cmd.Parameters["@Result"].Value);
-            CerrarConexion();
-
-            return result;
+            catch (Exception e) { throw e; }
+            finally { CerrarConexion(); }
         }
     }
 }

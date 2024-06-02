@@ -170,6 +170,7 @@
             this.btnElimUs.TabIndex = 15;
             this.btnElimUs.Text = "Eliminar Usuario";
             this.btnElimUs.UseVisualStyleBackColor = true;
+            this.btnElimUs.Click += new System.EventHandler(this.btnElimUs_Click);
             // 
             // btnModUs
             // 
@@ -247,7 +248,6 @@
             this.dgvUsuarios.EnableHeadersVisualStyles = false;
             this.dgvUsuarios.Location = new System.Drawing.Point(6, 46);
             this.dgvUsuarios.Name = "dgvUsuarios";
-            this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.RowHeadersVisible = false;
             this.dgvUsuarios.RowHeadersWidth = 51;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -342,7 +342,7 @@
             // 
             this.ptxtMail.BackColor = System.Drawing.Color.DimGray;
             this.ptxtMail.Location = new System.Drawing.Point(375, 167);
-            this.ptxtMail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ptxtMail.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtMail.Name = "ptxtMail";
             this.ptxtMail.Size = new System.Drawing.Size(187, 2);
             this.ptxtMail.TabIndex = 20;
@@ -351,7 +351,7 @@
             // 
             this.ptxtTel.BackColor = System.Drawing.Color.DimGray;
             this.ptxtTel.Location = new System.Drawing.Point(375, 137);
-            this.ptxtTel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ptxtTel.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtTel.Name = "ptxtTel";
             this.ptxtTel.Size = new System.Drawing.Size(187, 2);
             this.ptxtTel.TabIndex = 20;
@@ -360,7 +360,7 @@
             // 
             this.ptxtDir.BackColor = System.Drawing.Color.DimGray;
             this.ptxtDir.Location = new System.Drawing.Point(376, 108);
-            this.ptxtDir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ptxtDir.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtDir.Name = "ptxtDir";
             this.ptxtDir.Size = new System.Drawing.Size(187, 2);
             this.ptxtDir.TabIndex = 20;
@@ -369,7 +369,7 @@
             // 
             this.ptxtPass.BackColor = System.Drawing.Color.DimGray;
             this.ptxtPass.Location = new System.Drawing.Point(93, 167);
-            this.ptxtPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ptxtPass.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtPass.Name = "ptxtPass";
             this.ptxtPass.Size = new System.Drawing.Size(187, 2);
             this.ptxtPass.TabIndex = 20;
@@ -378,7 +378,7 @@
             // 
             this.ptxtUsu.BackColor = System.Drawing.Color.DimGray;
             this.ptxtUsu.Location = new System.Drawing.Point(92, 133);
-            this.ptxtUsu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ptxtUsu.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtUsu.Name = "ptxtUsu";
             this.ptxtUsu.Size = new System.Drawing.Size(187, 2);
             this.ptxtUsu.TabIndex = 20;
@@ -387,7 +387,7 @@
             // 
             this.ptxtApe.BackColor = System.Drawing.Color.DimGray;
             this.ptxtApe.Location = new System.Drawing.Point(92, 103);
-            this.ptxtApe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ptxtApe.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtApe.Name = "ptxtApe";
             this.ptxtApe.Size = new System.Drawing.Size(187, 2);
             this.ptxtApe.TabIndex = 20;
@@ -396,7 +396,7 @@
             // 
             this.ptxtNom.BackColor = System.Drawing.Color.DimGray;
             this.ptxtNom.Location = new System.Drawing.Point(92, 74);
-            this.ptxtNom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ptxtNom.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtNom.Name = "ptxtNom";
             this.ptxtNom.Size = new System.Drawing.Size(187, 2);
             this.ptxtNom.TabIndex = 20;
@@ -405,7 +405,7 @@
             // 
             this.ptxtDoc.BackColor = System.Drawing.Color.DimGray;
             this.ptxtDoc.Location = new System.Drawing.Point(92, 44);
-            this.ptxtDoc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ptxtDoc.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtDoc.Name = "ptxtDoc";
             this.ptxtDoc.Size = new System.Drawing.Size(187, 2);
             this.ptxtDoc.TabIndex = 19;

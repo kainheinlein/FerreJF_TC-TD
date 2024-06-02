@@ -49,5 +49,25 @@ namespace Negocio_BLL
         {
             SessionManager.GetInstance.Logout();
         }
+
+        public void DesbloquearUS(UsuarioBE us)
+        {
+            mpUsuario.ActualizarBloqueo(us.user, false);
+        }
+
+        public void CrearUsuario(UsuarioBE us)
+        {
+            mpUsuario.CrearUsuario(us);
+        }
+
+        public void EliminarUs(UsuarioBE us)
+        {
+            mpUsuario.EliminarUsuario(us);
+        }
+
+        public void ActualizarUsuario(UsuarioBE us)
+        {
+            mpUsuario.ActualizarUsuario(us);
+        }
     }
 }

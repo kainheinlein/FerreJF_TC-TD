@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCliente.Designer.cs">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCobro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCobro.Designer.cs">
+      <DependentUpon>frmCobro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStock.Designer.cs">
+      <DependentUpon>frmStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,11 +84,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmCliente.resx">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCobro.resx">
+      <DependentUpon>frmCobro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenu.resx">
       <DependentUpon>FrmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmStock.resx">
+      <DependentUpon>frmStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuario.resx">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
