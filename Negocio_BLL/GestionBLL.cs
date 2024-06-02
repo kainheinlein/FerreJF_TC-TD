@@ -12,20 +12,14 @@ namespace Negocio_BLL
 {
     public class GestionBLL
     {
-        private GestionUsuario GestionUs;
+        private MP_Usuario mpUsuario;
         public UsuarioBE usuario;
         public DataTable ObtenerUsuarios()
         {
-            GestionUs = new GestionUsuario();
+            mpUsuario = new MP_Usuario();
             DataTable dt = new DataTable();
-            dt = GestionUs.ObtenerUsuarios();
+            dt = mpUsuario.ObtenerUsuarios();
             return dt;
-        }
-
-        public int CrearUsuario(UsuarioBE us)
-        {
-            int resultado = 0;
-            return resultado;
         }
     }
 }

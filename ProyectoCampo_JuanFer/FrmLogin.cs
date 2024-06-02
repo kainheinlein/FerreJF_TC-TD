@@ -92,43 +92,59 @@ namespace ProyectoCampo_JuanFer
             }
             else
             {
-                int authOK = usuario.Login(us, psw);
-                if (authOK == 1)
+                try
                 {
-                    usuario.maxIntentos = 3;
-                    FrmMenu frm = new FrmMenu();
-                    frm.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    txtContra.Text = "";
-                    txtUsuario.Focus();
-
-                    //Mensaje de label de Error
-                    switch (authOK)
+                    int authOK = usuario.Login(us, psw);
+                    if (authOK == 1)
                     {
-                        case -1:
-                            lblError.Text = "Hubo un error de conexion con la Base de Datos. Contacte al Administrador";
-                            break;
-                        case 0:
-                            lblError.Text = "El usuario ingresado no existe";
-                            break;
-                        case 2:
-                            lblError.Text = "El usuario se encuentra bloqueado. Contacte al administrador";
-                            break;
-                        case 3:
-                            lblError.Text = "La contraseña ingresada es incorrecta";
-                            break;
-                        case 4:
-                            MessageBox.Show("Cantidad de intentos superado, se bloqueo el usuario. Cerrando la aplicacion.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            Application.Exit();
-                            break;
+                        FrmMenu frm = new FrmMenu();
+                        frm.Show();
+                        this.Hide();
                     }
+                    else
+                    {
+                        txtContra.Text = "";
+                        txtUsuario.Text = "";
+                        txtUsuario.Focus();
+
+                        //Mensaje de label de Error
+                        switch (authOK)
+                        {
+                            case 0:
+                                lblError.Text = "El usuario ingresado no existe";
+                                break;
+                            case 2:
+                                lblError.Text = "El usuario se encuentra bloqueado. Contacte al administrador";
+                                break;
+                            case 3:
+                                lblError.Text = "La contraseña ingresada es incorrecta";
+                                break;
+                            case 4:
+                                MessageBox.Show($"El usuario -->{us}<-- no esta disponible. Contacte al administrador.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                break;
+                            case 5:
+                                MessageBox.Show("Cantidad de intentos superado, se bloqueo el usuario. Cerrando la aplicacion.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                Application.Exit();
+                                break;
+                            case 6:
+                                MessageBox.Show($"El usuario -->{us}<-- ya tiene la sesion iniciada.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                break;
+                            case 7:
+                                if (MessageBox.Show("Ya existe una sesion iniciada, desea finalizarla?", " ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    SessionManager.GetInstance.Logout();
+                                };
+                                break;
+                        }
+                    }
+                }
+                catch(Exception ex) 
+                {
+                    MessageBox.Show("Error de comunicacion con la Base de Datos: " + ex.Message);
                 }
             }
         }
-
+    
         private void lblSinConexion_Click(object sender, EventArgs e)
         {
             FrmMenu frm = new FrmMenu();

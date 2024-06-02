@@ -47,23 +47,64 @@ namespace Acceso_DAL
             } 
         }
 
-        public DataTable Leer (string sp, SqlParameter[] datos)
+        public DataTable LeerTabla (string sp, SqlParameter[] datos)
         {
-            AbrirConexion();
-            DataTable dt = new DataTable();
-            SqlDataAdapter ad = new SqlDataAdapter();
-            ad.SelectCommand = new SqlCommand();
-            ad.SelectCommand.CommandType = CommandType.StoredProcedure;
-            ad.SelectCommand.CommandText = sp;
-            if (datos != null)
+            try
             {
-                ad.SelectCommand.Parameters.AddRange(datos);
-            }
-            ad.SelectCommand.Connection = conexion;
-            ad.Fill(dt);
-            CerrarConexion();
+                AbrirConexion();
+                DataTable dt = new DataTable();
+                SqlDataAdapter ad = new SqlDataAdapter();
+                ad.SelectCommand = new SqlCommand();
+                ad.SelectCommand.CommandType = CommandType.StoredProcedure;
+                ad.SelectCommand.CommandText = sp;
+                if (datos != null)
+                {
+                    ad.SelectCommand.Parameters.AddRange(datos);
+                }
+                ad.SelectCommand.Connection = conexion;
+                ad.Fill(dt);
 
-            return dt;
+                return dt;
+            }
+            catch (Exception e) { throw e;}
+            finally { CerrarConexion(); }
+        }
+
+        public void Escribir(string sp, SqlParameter[] parametros)
+        {
+            try
+            {
+                AbrirConexion();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sp;
+                cmd.Connection = conexion;
+                cmd.Parameters.AddRange(parametros);
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception e) { throw e; }
+            finally { CerrarConexion(); }
+        }
+
+        public int Consulta(string sp, SqlParameter[] parametros)
+        {
+            int result;
+
+            try
+            {
+                AbrirConexion();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sp;
+                cmd.Connection = conexion;
+                cmd.Parameters.AddRange(parametros);
+                cmd.Parameters.Add("@Result", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.ExecuteNonQuery();
+
+                return result = Convert.ToInt32(cmd.Parameters["@Result"].Value);
+            }
+            catch (Exception e) { throw e; }
+            finally { CerrarConexion(); }
         }
     }
 }

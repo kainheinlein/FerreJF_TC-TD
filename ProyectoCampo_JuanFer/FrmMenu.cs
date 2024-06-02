@@ -41,7 +41,7 @@ namespace ProyectoCampo_JuanFer
             lblUsuario.Text = "Usuario: Sin Conexion";
             iniciarSesionToolStripMenuItem.Enabled = true;
             cerrarSesionToolStripMenuItem.Enabled = false;
-            //tsAdmin.Enabled = false;
+            tsAdmin.Enabled = false;
             tsReportes.Enabled = false;
             tsGestion.Enabled = false;
             realizarCobroToolStripMenuItem.Enabled = false;
@@ -108,6 +108,11 @@ namespace ProyectoCampo_JuanFer
             {
                 frmUsuario.BringToFront();
             }
+        }
+
+        private void FrmMenu_Resize(object sender, EventArgs e)
+        {
+            this.Refresh();
         }
     }
 }
