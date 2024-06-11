@@ -77,6 +77,7 @@ namespace ProyectoCampo_JuanFer
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
+            UsuarioBE user;
             string us = txtUsuario.Text;
             string psw = txtContra.Text;
             string patron = "^[A-Za-z0-9]+$";
@@ -94,7 +95,11 @@ namespace ProyectoCampo_JuanFer
             {
                 try
                 {
-                    int authOK = usuario.Login(us, psw);
+                    user = new UsuarioBE();
+                    user.user = us;
+                    user.pass = psw;
+
+                    int authOK = usuario.Login(user);
                     if (authOK == 1)
                     {
                         FrmMenu frm = new FrmMenu();
@@ -123,7 +128,7 @@ namespace ProyectoCampo_JuanFer
                                 MessageBox.Show($"El usuario -->{us}<-- no esta disponible. Contacte al administrador.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 break;
                             case 5:
-                                MessageBox.Show("Cantidad de intentos superado, se bloqueo el usuario. Cerrando la aplicacion.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                MessageBox.Show("Cantidad de intentos superado, se bloqueo el usuario. Cerrando la aplicacion.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 Application.Exit();
                                 break;
                             case 6:
@@ -132,7 +137,7 @@ namespace ProyectoCampo_JuanFer
                             case 7:
                                 if (MessageBox.Show("Ya existe una sesion iniciada, desea finalizarla?", " ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
-                                    SessionManager.GetInstance.Logout();
+                                    usuario.Logout();
                                 };
                                 break;
                         }

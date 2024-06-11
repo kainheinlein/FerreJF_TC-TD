@@ -16,33 +16,73 @@ namespace Negocio_BLL
         private UsuarioBE usuario;
         private MP_Usuario mpUsuario = new MP_Usuario();
 
-        public int Login(string us, string pw) 
+        public int Login(UsuarioBE us) 
         {
             int AuthOK;
+            us.pass = Encriptador.EncriptarIrrev(us.pass);
             if (SessionManager.GetInstance.logged == false)
             {
-                AuthOK = mpUsuario.Login(us, Encriptador.EncriptarIrrev(pw));
+                AuthOK = mpUsuario.Login(us);
                 if (AuthOK == 1)
                 {
-                    usuario = new UsuarioBE();
-                    usuario.user = us;
-                    SessionManager.GetInstance.Login(usuario);
+                    SessionManager.GetInstance.Login(us);
                     maxIntentos = 3;
                 }
             }
             else
             {
                 usuario = SessionManager.GetInstance.UsuarioActual();
-                if (usuario.user == us) { AuthOK = 6; }
+                if (usuario.user == us.user) { AuthOK = 6; }
                 else {  AuthOK = 7; }
             }
             if(AuthOK != 1) { maxIntentos--; } 
             if(maxIntentos == 0)
             {
-                mpUsuario.ActualizarBloqueo(us, true);
+                usuario = new UsuarioBE();
+                usuario.user = us.user;
+                usuario.pass = " ";
+                mpUsuario.ActualizarBloqueo(usuario, true); 
                 AuthOK = 5;
             }
             return AuthOK;
+        }
+
+        public int VerifUsuario (UsuarioBE us, int tipo)//tipo 0 = Verificar Actual -- tipo == 1 Verificar Nueva
+        {
+            string encPass = Encriptador.EncriptarIrrev(us.pass);
+            if (SessionManager.GetInstance.UsuarioActual().pass == encPass)
+            {
+                maxIntentos = 3;
+                return 1;//Usuario Verificado OK -- Nueva  = Anterior
+            }
+            else
+            {
+                if(tipo == 1)//Verificar Nueva
+                {
+                    SessionManager.GetInstance.UsuarioActual().pass = encPass;
+                    mpUsuario.CambiarPass(SessionManager.GetInstance.UsuarioActual());
+                    maxIntentos = 3;
+
+                    return 2;//Cambio de pass ok
+                }
+                maxIntentos--;
+                if(maxIntentos == 0)
+                {
+                    if(tipo == 0)//Verificar Actual
+                    {
+                        us.user = SessionManager.GetInstance.UsuarioActual().user;
+                        us.pass = " ";
+                        mpUsuario.ActualizarBloqueo(us, true);
+                        return 2; //Falla Verificacion, Bloquea usuario
+                    }
+                    else 
+                    {
+                        maxIntentos = 3; 
+                        return 3; 
+                    }
+                }
+                return 0; //Reintentar
+            }
         }
 
         public void Logout()
@@ -52,11 +92,15 @@ namespace Negocio_BLL
 
         public void DesbloquearUS(UsuarioBE us)
         {
-            mpUsuario.ActualizarBloqueo(us.user, false);
+            usuario = us;
+            us.pass = Encriptador.EncriptarIrrev(us.pass);
+            mpUsuario.ActualizarBloqueo(us, false);
         }
 
         public void CrearUsuario(UsuarioBE us)
         {
+            usuario = us;
+            us.pass = Encriptador.EncriptarIrrev(us.pass);
             mpUsuario.CrearUsuario(us);
         }
 

@@ -24,20 +24,22 @@ namespace Acceso_DAL
             return dt;
         }
 
-        public int Login(string username, string password)
+        public int Login(UsuarioBE us)
         {
             SqlParameter[] parametros = new SqlParameter[2];
-            parametros[0] = new SqlParameter("@user", username);
-            parametros[1] = new SqlParameter("@pass", password);
+            parametros[0] = new SqlParameter("@user", us.user);
+            parametros[1] = new SqlParameter("@pass", us.pass);
 
             return conexDB.Consulta("SP_Login", parametros);
         }
 
-        public void ActualizarBloqueo(string us, bool bloq)
+        public void ActualizarBloqueo(UsuarioBE us, bool bloq)
         {
-            SqlParameter[] parametros = new SqlParameter[2];
-            parametros[0] = new SqlParameter("@Usuario", us);
-            parametros[1] = new SqlParameter("@Bloqueado", bloq);
+            SqlParameter[] parametros = new SqlParameter[3];
+            parametros[0] = new SqlParameter("@Usuario", us.user);
+            parametros[1] = new SqlParameter("@pass", us.pass);
+            parametros[2] = new SqlParameter("@Bloqueado", bloq);
+
             conexDB.Escribir("SP_ActualizarBloqueado", parametros);
         }
 
@@ -69,20 +71,28 @@ namespace Acceso_DAL
 
         public void ActualizarUsuario(UsuarioBE us)
         {
-            SqlParameter[] parametros = new SqlParameter[11];
+            SqlParameter[] parametros = new SqlParameter[10];
             parametros[0] = new SqlParameter("Codigo", us.cod);
             parametros[1] = new SqlParameter("@DNI", us.dni);
             parametros[2] = new SqlParameter("@Nombre", us.nomb);
             parametros[3] = new SqlParameter("@Apellido", us.ape);
             parametros[4] = new SqlParameter("@Usuario", us.user);
             parametros[5] = new SqlParameter("@Rol", us.rol);
-            parametros[6] = new SqlParameter("@Contraseña", us.pass);
-            parametros[7] = new SqlParameter("@Direccion", us.dir);
-            parametros[8] = new SqlParameter("@Telefono", us.tel);
-            parametros[9] = new SqlParameter("@Email", us.email);
-            parametros[10] = new SqlParameter("@Activo", us.estado);
+            parametros[6] = new SqlParameter("@Direccion", us.dir);
+            parametros[7] = new SqlParameter("@Telefono", us.tel);
+            parametros[8] = new SqlParameter("@Email", us.email);
+            parametros[9] = new SqlParameter("@Activo", us.estado);
 
             conexDB.Escribir("SP_ActualizarUs", parametros);
+        }
+
+        public void CambiarPass(UsuarioBE us)
+        {
+            SqlParameter[] parametros = new SqlParameter[2];
+            parametros[0] = new SqlParameter("@Usuario", us.user);
+            parametros[1] = new SqlParameter("@pass", us.pass);
+
+            conexDB.Escribir("SP_CambiarPass", parametros);
         }
 
     }
