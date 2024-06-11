@@ -51,14 +51,11 @@
             this.ptxtMail = new System.Windows.Forms.Panel();
             this.ptxtTel = new System.Windows.Forms.Panel();
             this.ptxtDir = new System.Windows.Forms.Panel();
-            this.ptxtPass = new System.Windows.Forms.Panel();
             this.ptxtUsu = new System.Windows.Forms.Panel();
             this.ptxtApe = new System.Windows.Forms.Panel();
             this.ptxtNom = new System.Windows.Forms.Panel();
             this.ptxtDoc = new System.Windows.Forms.Panel();
-            this.txtPass = new System.Windows.Forms.TextBox();
             this.chkBloqueado = new System.Windows.Forms.CheckBox();
-            this.lblPass = new System.Windows.Forms.Label();
             this.cmbRol = new System.Windows.Forms.ComboBox();
             this.chkActivo = new System.Windows.Forms.CheckBox();
             this.txtMail = new System.Windows.Forms.TextBox();
@@ -303,14 +300,11 @@
             this.gbDatos.Controls.Add(this.ptxtMail);
             this.gbDatos.Controls.Add(this.ptxtTel);
             this.gbDatos.Controls.Add(this.ptxtDir);
-            this.gbDatos.Controls.Add(this.ptxtPass);
             this.gbDatos.Controls.Add(this.ptxtUsu);
             this.gbDatos.Controls.Add(this.ptxtApe);
             this.gbDatos.Controls.Add(this.ptxtNom);
             this.gbDatos.Controls.Add(this.ptxtDoc);
-            this.gbDatos.Controls.Add(this.txtPass);
             this.gbDatos.Controls.Add(this.chkBloqueado);
-            this.gbDatos.Controls.Add(this.lblPass);
             this.gbDatos.Controls.Add(this.cmbRol);
             this.gbDatos.Controls.Add(this.chkActivo);
             this.gbDatos.Controls.Add(this.txtMail);
@@ -365,19 +359,10 @@
             this.ptxtDir.Size = new System.Drawing.Size(187, 2);
             this.ptxtDir.TabIndex = 20;
             // 
-            // ptxtPass
-            // 
-            this.ptxtPass.BackColor = System.Drawing.Color.DimGray;
-            this.ptxtPass.Location = new System.Drawing.Point(93, 167);
-            this.ptxtPass.Margin = new System.Windows.Forms.Padding(2);
-            this.ptxtPass.Name = "ptxtPass";
-            this.ptxtPass.Size = new System.Drawing.Size(187, 2);
-            this.ptxtPass.TabIndex = 20;
-            // 
             // ptxtUsu
             // 
             this.ptxtUsu.BackColor = System.Drawing.Color.DimGray;
-            this.ptxtUsu.Location = new System.Drawing.Point(92, 133);
+            this.ptxtUsu.Location = new System.Drawing.Point(93, 165);
             this.ptxtUsu.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtUsu.Name = "ptxtUsu";
             this.ptxtUsu.Size = new System.Drawing.Size(187, 2);
@@ -386,7 +371,7 @@
             // ptxtApe
             // 
             this.ptxtApe.BackColor = System.Drawing.Color.DimGray;
-            this.ptxtApe.Location = new System.Drawing.Point(92, 103);
+            this.ptxtApe.Location = new System.Drawing.Point(93, 135);
             this.ptxtApe.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtApe.Name = "ptxtApe";
             this.ptxtApe.Size = new System.Drawing.Size(187, 2);
@@ -395,7 +380,7 @@
             // ptxtNom
             // 
             this.ptxtNom.BackColor = System.Drawing.Color.DimGray;
-            this.ptxtNom.Location = new System.Drawing.Point(92, 74);
+            this.ptxtNom.Location = new System.Drawing.Point(93, 106);
             this.ptxtNom.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtNom.Name = "ptxtNom";
             this.ptxtNom.Size = new System.Drawing.Size(187, 2);
@@ -404,45 +389,22 @@
             // ptxtDoc
             // 
             this.ptxtDoc.BackColor = System.Drawing.Color.DimGray;
-            this.ptxtDoc.Location = new System.Drawing.Point(92, 44);
+            this.ptxtDoc.Location = new System.Drawing.Point(93, 76);
             this.ptxtDoc.Margin = new System.Windows.Forms.Padding(2);
             this.ptxtDoc.Name = "ptxtDoc";
             this.ptxtDoc.Size = new System.Drawing.Size(187, 2);
             this.ptxtDoc.TabIndex = 19;
-            // 
-            // txtPass
-            // 
-            this.txtPass.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPass.Enabled = false;
-            this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPass.Location = new System.Drawing.Point(92, 145);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(188, 23);
-            this.txtPass.TabIndex = 5;
-            this.txtPass.UseSystemPasswordChar = true;
-            this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
             // 
             // chkBloqueado
             // 
             this.chkBloqueado.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.chkBloqueado.AutoSize = true;
             this.chkBloqueado.Enabled = false;
-            this.chkBloqueado.Location = new System.Drawing.Point(515, 21);
+            this.chkBloqueado.Location = new System.Drawing.Point(265, 27);
             this.chkBloqueado.Name = "chkBloqueado";
             this.chkBloqueado.Size = new System.Drawing.Size(15, 14);
             this.chkBloqueado.TabIndex = 18;
             this.chkBloqueado.UseVisualStyleBackColor = true;
-            // 
-            // lblPass
-            // 
-            this.lblPass.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblPass.AutoSize = true;
-            this.lblPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPass.Location = new System.Drawing.Point(9, 149);
-            this.lblPass.Name = "lblPass";
-            this.lblPass.Size = new System.Drawing.Size(80, 15);
-            this.lblPass.TabIndex = 16;
-            this.lblPass.Text = "Contraseña";
             // 
             // cmbRol
             // 
@@ -462,7 +424,7 @@
             this.chkActivo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.chkActivo.AutoSize = true;
             this.chkActivo.Enabled = false;
-            this.chkActivo.Location = new System.Drawing.Point(378, 21);
+            this.chkActivo.Location = new System.Drawing.Point(146, 27);
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Size = new System.Drawing.Size(15, 14);
             this.chkActivo.TabIndex = 17;
@@ -484,7 +446,7 @@
             this.lblActivo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblActivo.AutoSize = true;
             this.lblActivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActivo.Location = new System.Drawing.Point(328, 19);
+            this.lblActivo.Location = new System.Drawing.Point(96, 25);
             this.lblActivo.Name = "lblActivo";
             this.lblActivo.Size = new System.Drawing.Size(44, 15);
             this.lblActivo.TabIndex = 18;
@@ -506,7 +468,7 @@
             this.lblBloq.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblBloq.AutoSize = true;
             this.lblBloq.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBloq.Location = new System.Drawing.Point(433, 19);
+            this.lblBloq.Location = new System.Drawing.Point(183, 25);
             this.lblBloq.Name = "lblBloq";
             this.lblBloq.Size = new System.Drawing.Size(76, 15);
             this.lblBloq.TabIndex = 16;
@@ -572,7 +534,7 @@
             this.txtUsu.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtUsu.Enabled = false;
             this.txtUsu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsu.Location = new System.Drawing.Point(92, 112);
+            this.txtUsu.Location = new System.Drawing.Point(93, 144);
             this.txtUsu.Name = "txtUsu";
             this.txtUsu.Size = new System.Drawing.Size(188, 23);
             this.txtUsu.TabIndex = 4;
@@ -583,7 +545,7 @@
             this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(9, 115);
+            this.lblUsuario.Location = new System.Drawing.Point(10, 147);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(57, 15);
             this.lblUsuario.TabIndex = 6;
@@ -594,7 +556,7 @@
             this.txtApe.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtApe.Enabled = false;
             this.txtApe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApe.Location = new System.Drawing.Point(92, 82);
+            this.txtApe.Location = new System.Drawing.Point(93, 114);
             this.txtApe.Name = "txtApe";
             this.txtApe.Size = new System.Drawing.Size(187, 23);
             this.txtApe.TabIndex = 3;
@@ -605,7 +567,7 @@
             this.lblApellido.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblApellido.AutoSize = true;
             this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellido.Location = new System.Drawing.Point(9, 85);
+            this.lblApellido.Location = new System.Drawing.Point(10, 117);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(59, 15);
             this.lblApellido.TabIndex = 4;
@@ -616,7 +578,7 @@
             this.txtNom.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNom.Enabled = false;
             this.txtNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNom.Location = new System.Drawing.Point(92, 52);
+            this.txtNom.Location = new System.Drawing.Point(93, 84);
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(188, 23);
             this.txtNom.TabIndex = 2;
@@ -627,7 +589,7 @@
             this.lblNombre.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(9, 55);
+            this.lblNombre.Location = new System.Drawing.Point(10, 87);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(58, 15);
             this.lblNombre.TabIndex = 2;
@@ -639,7 +601,7 @@
             this.txtDoc.Enabled = false;
             this.txtDoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDoc.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtDoc.Location = new System.Drawing.Point(92, 23);
+            this.txtDoc.Location = new System.Drawing.Point(93, 55);
             this.txtDoc.Name = "txtDoc";
             this.txtDoc.Size = new System.Drawing.Size(188, 23);
             this.txtDoc.TabIndex = 1;
@@ -650,7 +612,7 @@
             this.lblDNI.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblDNI.AutoSize = true;
             this.lblDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDNI.Location = new System.Drawing.Point(9, 25);
+            this.lblDNI.Location = new System.Drawing.Point(10, 57);
             this.lblDNI.Name = "lblDNI";
             this.lblDNI.Size = new System.Drawing.Size(31, 15);
             this.lblDNI.TabIndex = 0;
@@ -744,8 +706,6 @@
         private System.Windows.Forms.CheckBox chkBloqueado;
         private System.Windows.Forms.CheckBox chkActivo;
         private System.Windows.Forms.ComboBox cmbRol;
-        private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.Label lblPass;
         private System.Windows.Forms.GroupBox g;
         private System.Windows.Forms.TextBox txtMensaje;
         private System.Windows.Forms.Panel ptxtApe;
@@ -755,6 +715,5 @@
         private System.Windows.Forms.Panel ptxtMail;
         private System.Windows.Forms.Panel ptxtTel;
         private System.Windows.Forms.Panel ptxtDir;
-        private System.Windows.Forms.Panel ptxtPass;
     }
 }

@@ -114,5 +114,11 @@ namespace ProyectoCampo_JuanFer
         {
             this.Refresh();
         }
+
+        private void cambiarClaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmModClave frmClave = new frmModClave();
+            frmClave.ShowDialog();
+        }
     }
 }
