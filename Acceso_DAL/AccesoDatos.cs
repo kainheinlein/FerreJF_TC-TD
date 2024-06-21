@@ -8,7 +8,6 @@ using System.Data.SqlClient;
 using System.Configuration;
 using Entidad_BE;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Acceso_DAL
 {

@@ -16,7 +16,7 @@ namespace ProyectoCampo_JuanFer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmLogin());
+            Application.Run(new frmLogin());
         }
     }
 }

@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace ProyectoCampo_JuanFer
 {
-    public partial class frmCliente : Form
+    public partial class frmCarrito : Form
     {
-        public frmCliente()
+        public frmCarrito()
         {
             InitializeComponent();
-        }
-
-        private void frmCliente_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

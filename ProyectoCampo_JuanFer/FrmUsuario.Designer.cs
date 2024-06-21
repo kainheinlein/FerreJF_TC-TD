@@ -1,6 +1,6 @@
 ﻿namespace ProyectoCampo_JuanFer
 {
-    partial class FrmUsuario
+    partial class frmUsuario
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuario));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuario));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -105,7 +105,7 @@
             this.groupBox1.Controls.Add(this.btnModUs);
             this.groupBox1.Controls.Add(this.btnCrearUs);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(855, 70);
+            this.groupBox1.Location = new System.Drawing.Point(866, 70);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(150, 433);
             this.groupBox1.TabIndex = 12;
@@ -202,7 +202,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(18, 70);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(831, 379);
+            this.groupBox2.Size = new System.Drawing.Size(842, 379);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Usuarios";
@@ -252,7 +252,7 @@
             this.dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvUsuarios.RowTemplate.Height = 30;
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsuarios.Size = new System.Drawing.Size(819, 327);
+            this.dgvUsuarios.Size = new System.Drawing.Size(830, 327);
             this.dgvUsuarios.TabIndex = 22;
             this.dgvUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick);
             // 
@@ -261,7 +261,7 @@
             this.rbBloqueados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbBloqueados.AutoSize = true;
             this.rbBloqueados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbBloqueados.Location = new System.Drawing.Point(713, 19);
+            this.rbBloqueados.Location = new System.Drawing.Point(724, 19);
             this.rbBloqueados.Name = "rbBloqueados";
             this.rbBloqueados.Size = new System.Drawing.Size(109, 20);
             this.rbBloqueados.TabIndex = 21;
@@ -273,7 +273,7 @@
             this.rbActivos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbActivos.AutoSize = true;
             this.rbActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbActivos.Location = new System.Drawing.Point(628, 19);
+            this.rbActivos.Location = new System.Drawing.Point(639, 19);
             this.rbActivos.Name = "rbActivos";
             this.rbActivos.Size = new System.Drawing.Size(76, 20);
             this.rbActivos.TabIndex = 20;
@@ -286,7 +286,7 @@
             this.rbTodos.AutoSize = true;
             this.rbTodos.Checked = true;
             this.rbTodos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbTodos.Location = new System.Drawing.Point(550, 19);
+            this.rbTodos.Location = new System.Drawing.Point(561, 19);
             this.rbTodos.Name = "rbTodos";
             this.rbTodos.Size = new System.Drawing.Size(70, 20);
             this.rbTodos.TabIndex = 19;
@@ -325,7 +325,7 @@
             this.gbDatos.Controls.Add(this.txtDoc);
             this.gbDatos.Controls.Add(this.lblDNI);
             this.gbDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbDatos.Location = new System.Drawing.Point(18, 457);
+            this.gbDatos.Location = new System.Drawing.Point(24, 457);
             this.gbDatos.Name = "gbDatos";
             this.gbDatos.Size = new System.Drawing.Size(569, 177);
             this.gbDatos.TabIndex = 14;
@@ -334,6 +334,7 @@
             // 
             // ptxtMail
             // 
+            this.ptxtMail.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtMail.BackColor = System.Drawing.Color.DimGray;
             this.ptxtMail.Location = new System.Drawing.Point(375, 167);
             this.ptxtMail.Margin = new System.Windows.Forms.Padding(2);
@@ -343,6 +344,7 @@
             // 
             // ptxtTel
             // 
+            this.ptxtTel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtTel.BackColor = System.Drawing.Color.DimGray;
             this.ptxtTel.Location = new System.Drawing.Point(375, 137);
             this.ptxtTel.Margin = new System.Windows.Forms.Padding(2);
@@ -352,6 +354,7 @@
             // 
             // ptxtDir
             // 
+            this.ptxtDir.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtDir.BackColor = System.Drawing.Color.DimGray;
             this.ptxtDir.Location = new System.Drawing.Point(376, 108);
             this.ptxtDir.Margin = new System.Windows.Forms.Padding(2);
@@ -361,6 +364,7 @@
             // 
             // ptxtUsu
             // 
+            this.ptxtUsu.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtUsu.BackColor = System.Drawing.Color.DimGray;
             this.ptxtUsu.Location = new System.Drawing.Point(93, 165);
             this.ptxtUsu.Margin = new System.Windows.Forms.Padding(2);
@@ -370,6 +374,7 @@
             // 
             // ptxtApe
             // 
+            this.ptxtApe.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtApe.BackColor = System.Drawing.Color.DimGray;
             this.ptxtApe.Location = new System.Drawing.Point(93, 135);
             this.ptxtApe.Margin = new System.Windows.Forms.Padding(2);
@@ -379,6 +384,7 @@
             // 
             // ptxtNom
             // 
+            this.ptxtNom.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtNom.BackColor = System.Drawing.Color.DimGray;
             this.ptxtNom.Location = new System.Drawing.Point(93, 106);
             this.ptxtNom.Margin = new System.Windows.Forms.Padding(2);
@@ -388,6 +394,7 @@
             // 
             // ptxtDoc
             // 
+            this.ptxtDoc.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtDoc.BackColor = System.Drawing.Color.DimGray;
             this.ptxtDoc.Location = new System.Drawing.Point(93, 76);
             this.ptxtDoc.Margin = new System.Windows.Forms.Padding(2);
@@ -623,7 +630,7 @@
             this.g.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.g.Controls.Add(this.txtMensaje);
             this.g.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.g.Location = new System.Drawing.Point(593, 457);
+            this.g.Location = new System.Drawing.Point(599, 457);
             this.g.Name = "g";
             this.g.Size = new System.Drawing.Size(256, 177);
             this.g.TabIndex = 15;
@@ -641,19 +648,20 @@
             this.txtMensaje.Size = new System.Drawing.Size(244, 145);
             this.txtMensaje.TabIndex = 17;
             // 
-            // FrmUsuario
+            // frmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1017, 641);
+            this.ClientSize = new System.Drawing.Size(1028, 662);
             this.Controls.Add(this.g);
             this.Controls.Add(this.gbDatos);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1028, 662);
-            this.Name = "FrmUsuario";
+            this.Name = "frmUsuario";
             this.Text = "Gestion Usuarios";
             this.Load += new System.EventHandler(this.FrmUsuario_Load);
             this.groupBox1.ResumeLayout(false);

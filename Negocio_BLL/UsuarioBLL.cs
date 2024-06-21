@@ -32,10 +32,14 @@ namespace Negocio_BLL
             else
             {
                 usuario = SessionManager.GetInstance.UsuarioActual();
-                if (usuario.user == us.user) { AuthOK = 6; }
+                if ((usuario.user == us.user) && (usuario.pass == us.pass))
+                {
+                    AuthOK = 6;
+                    maxIntentos = 3;
+                }
                 else {  AuthOK = 7; }
             }
-            if(AuthOK != 1) { maxIntentos--; } 
+            if((AuthOK != 1) || (AuthOK != 7)) { maxIntentos--; } 
             if(maxIntentos == 0)
             {
                 usuario = new UsuarioBE();

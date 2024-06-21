@@ -14,10 +14,12 @@ using System.Windows.Forms;
 
 namespace ProyectoCampo_JuanFer
 {
-    public partial class FrmMenu : Form
+    public partial class frmMenu : Form
     {
-        private FrmUsuario frmUsuario;
-        public FrmMenu()
+        private frmUsuario frmUsuario;
+        private frmCliente frmCliente;
+        private frmCarrito frmCarrito;
+        public frmMenu()
         {
             InitializeComponent();
         }
@@ -79,7 +81,7 @@ namespace ProyectoCampo_JuanFer
                 UsuarioBLL usuario = new UsuarioBLL(); 
                 usuario.Logout();
 
-                FrmLogin frm = new FrmLogin();
+                frmLogin frm = new frmLogin();
                 frm.Show();
                 this.Close();
             }
@@ -87,7 +89,7 @@ namespace ProyectoCampo_JuanFer
 
         private void iniciarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmLogin frm = new FrmLogin();
+            frmLogin frm = new frmLogin();
             frm.Show();
             this.Close();
         }
@@ -96,7 +98,7 @@ namespace ProyectoCampo_JuanFer
         {
             if (frmUsuario == null || frmUsuario.IsDisposed)
             {
-                frmUsuario = new FrmUsuario()
+                frmUsuario = new frmUsuario()
                 {
                     MdiParent = this,
                     Dock = DockStyle.Fill,
@@ -119,6 +121,42 @@ namespace ProyectoCampo_JuanFer
         {
             frmModClave frmClave = new frmModClave();
             frmClave.ShowDialog();
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmCliente == null || frmCliente.IsDisposed)
+            {
+                frmCliente = new frmCliente()
+                {
+                    MdiParent = this,
+                    Dock = DockStyle.Fill,
+                    FormBorderStyle = FormBorderStyle.None
+                };
+                frmCliente.Show();
+            }
+            else
+            {
+                frmCliente.BringToFront();
+            }
+        }
+
+        private void productosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (frmCarrito == null || frmCarrito.IsDisposed)
+            {
+                frmCarrito = new frmCarrito()
+                {
+                    MdiParent = this,
+                    Dock = DockStyle.Fill,
+                    FormBorderStyle = FormBorderStyle.None
+                };
+                frmCarrito.Show();
+            }
+            else
+            {
+                frmCarrito.BringToFront();
+            }
         }
     }
 }
