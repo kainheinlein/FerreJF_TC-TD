@@ -1,6 +1,6 @@
 ﻿namespace ProyectoCampo_JuanFer
 {
-    partial class FrmUsuario
+    partial class frmUsuario
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuario));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuario));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -334,6 +334,7 @@
             // 
             // ptxtMail
             // 
+            this.ptxtMail.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtMail.BackColor = System.Drawing.Color.DimGray;
             this.ptxtMail.Location = new System.Drawing.Point(375, 167);
             this.ptxtMail.Margin = new System.Windows.Forms.Padding(2);
@@ -343,6 +344,7 @@
             // 
             // ptxtTel
             // 
+            this.ptxtTel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtTel.BackColor = System.Drawing.Color.DimGray;
             this.ptxtTel.Location = new System.Drawing.Point(375, 137);
             this.ptxtTel.Margin = new System.Windows.Forms.Padding(2);
@@ -352,6 +354,7 @@
             // 
             // ptxtDir
             // 
+            this.ptxtDir.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtDir.BackColor = System.Drawing.Color.DimGray;
             this.ptxtDir.Location = new System.Drawing.Point(376, 108);
             this.ptxtDir.Margin = new System.Windows.Forms.Padding(2);
@@ -361,6 +364,7 @@
             // 
             // ptxtUsu
             // 
+            this.ptxtUsu.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtUsu.BackColor = System.Drawing.Color.DimGray;
             this.ptxtUsu.Location = new System.Drawing.Point(93, 165);
             this.ptxtUsu.Margin = new System.Windows.Forms.Padding(2);
@@ -370,6 +374,7 @@
             // 
             // ptxtApe
             // 
+            this.ptxtApe.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtApe.BackColor = System.Drawing.Color.DimGray;
             this.ptxtApe.Location = new System.Drawing.Point(93, 135);
             this.ptxtApe.Margin = new System.Windows.Forms.Padding(2);
@@ -379,6 +384,7 @@
             // 
             // ptxtNom
             // 
+            this.ptxtNom.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtNom.BackColor = System.Drawing.Color.DimGray;
             this.ptxtNom.Location = new System.Drawing.Point(93, 106);
             this.ptxtNom.Margin = new System.Windows.Forms.Padding(2);
@@ -388,6 +394,7 @@
             // 
             // ptxtDoc
             // 
+            this.ptxtDoc.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptxtDoc.BackColor = System.Drawing.Color.DimGray;
             this.ptxtDoc.Location = new System.Drawing.Point(93, 76);
             this.ptxtDoc.Margin = new System.Windows.Forms.Padding(2);
@@ -641,7 +648,7 @@
             this.txtMensaje.Size = new System.Drawing.Size(244, 145);
             this.txtMensaje.TabIndex = 17;
             // 
-            // FrmUsuario
+            // frmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -653,7 +660,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1028, 662);
-            this.Name = "FrmUsuario";
+            this.Name = "frmUsuario";
             this.Text = "Gestion Usuarios";
             this.Load += new System.EventHandler(this.FrmUsuario_Load);
             this.groupBox1.ResumeLayout(false);

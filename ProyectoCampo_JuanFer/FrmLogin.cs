@@ -15,9 +15,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ProyectoCampo_JuanFer
 {
-    public partial class FrmLogin : Form
+    public partial class frmLogin : Form
     {
-        public FrmLogin()
+        public frmLogin()
         {
             InitializeComponent();
         }
@@ -102,9 +102,11 @@ namespace ProyectoCampo_JuanFer
                     int authOK = usuario.Login(user);
                     if (authOK == 1)
                     {
-                        FrmMenu frm = new FrmMenu();
+                        frmMenu frm = new frmMenu();
                         frm.Show();
                         this.Hide();
+
+                        frm.FormClosing += frm_closing;
                     }
                     else
                     {
@@ -133,12 +135,19 @@ namespace ProyectoCampo_JuanFer
                                 break;
                             case 6:
                                 MessageBox.Show($"El usuario -->{us}<-- ya tiene la sesion iniciada.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                frmMenu frm = new frmMenu();
+                                frm.Show();
+                                this.Hide();
+
+                                frm.FormClosing += frm_closing;
                                 break;
                             case 7:
                                 if (MessageBox.Show("Ya existe una sesion iniciada, desea finalizarla?", " ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
                                     usuario.Logout();
-                                };
+                                    MessageBox.Show("Sesion cerrada correctamente. Intente nuevamente con su usuario", " ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else { MessageBox.Show("Intente nuevamente con el usuario actualmente en uso. Si no es el suyo por favor cierre la sesion", " ", MessageBoxButtons.OK, MessageBoxIcon.Hand); }
                                 break;
                         }
                     }
@@ -149,17 +158,17 @@ namespace ProyectoCampo_JuanFer
                 }
             }
         }
-    
+
         private void lblSinConexion_Click(object sender, EventArgs e)
         {
-            FrmMenu frm = new FrmMenu();
+            frmMenu frm = new frmMenu();
             frm.Show();
             this.Hide();
         }
 
         private void lblSinConexion_MouseHover(object sender, EventArgs e)
         {
-            lblSinConexion.Cursor = Cursors.Hand;
+            //lblSinConexion.Cursor = Cursors.Hand;
 
             var font = ((Label)sender).Font;
 
@@ -175,6 +184,14 @@ namespace ProyectoCampo_JuanFer
             ((Label)sender).Font = new Font(font, FontStyle.Regular);
 
             font.Dispose();
+        }
+
+        private void frm_closing(object sender, FormClosingEventArgs e)
+        {
+            txtContra.Text = "";
+            txtUsuario.Text = "";
+            this.Show();
+            txtUsuario.Focus();
         }
     }
 }

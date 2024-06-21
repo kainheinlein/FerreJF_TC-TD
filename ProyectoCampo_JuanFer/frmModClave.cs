@@ -181,6 +181,9 @@ namespace ProyectoCampo_JuanFer
             this.Close();
         }
 
+        private void lblInstrucciones_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

@@ -13,9 +13,9 @@ using Negocio_BLL;
 
 namespace ProyectoCampo_JuanFer
 {
-    public partial class FrmUsuario : Form
+    public partial class frmUsuario : Form
     {
-        public FrmUsuario()
+        public frmUsuario()
         {
             InitializeComponent();
         }
