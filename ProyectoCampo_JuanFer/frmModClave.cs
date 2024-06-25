@@ -121,6 +121,7 @@ namespace ProyectoCampo_JuanFer
                         txtClaveRep.Visible = true;
                         btnAceptar.Visible = true;
                         lblInstrucciones.Text = "Introduzca una contraseña distinta a la anterior. Recuerde introducir solo letras y numeros";
+                        txtClave.Focus();
                         break;
                     case 2:
                         MessageBox.Show("Cantidad de intentos superados, usuario bloqueado. Contacte al administrador", "Usuario Bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -34,7 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuario));
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -42,7 +41,6 @@
             this.btnElimUs = new System.Windows.Forms.Button();
             this.btnModUs = new System.Windows.Forms.Button();
             this.btnCrearUs = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.rbBloqueados = new System.Windows.Forms.RadioButton();
             this.rbActivos = new System.Windows.Forms.RadioButton();
@@ -77,135 +75,133 @@
             this.lblDNI = new System.Windows.Forms.Label();
             this.g = new System.Windows.Forms.GroupBox();
             this.txtMensaje = new System.Windows.Forms.TextBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pUsuario = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.gbDatos.SuspendLayout();
             this.g.SuspendLayout();
+            this.pUsuario.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 17);
+            this.label1.Font = new System.Drawing.Font("Verdana", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(336, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(372, 32);
+            this.label1.Size = new System.Drawing.Size(280, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "GESTIÓN DE USUARIOS";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btnSalir);
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.btnGuardar);
-            this.groupBox1.Controls.Add(this.btnDesbloquear);
-            this.groupBox1.Controls.Add(this.btnElimUs);
-            this.groupBox1.Controls.Add(this.btnModUs);
-            this.groupBox1.Controls.Add(this.btnCrearUs);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(866, 70);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(150, 433);
-            this.groupBox1.TabIndex = 12;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Opciones";
-            // 
             // btnSalir
             // 
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(17, 366);
+            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(867, 337);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(118, 49);
+            this.btnSalir.Size = new System.Drawing.Size(118, 29);
             this.btnSalir.TabIndex = 12;
             this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnCancelar
             // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.Enabled = false;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(17, 311);
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(867, 302);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(118, 49);
+            this.btnCancelar.Size = new System.Drawing.Size(118, 29);
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar.Enabled = false;
-            this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(17, 255);
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.Location = new System.Drawing.Point(867, 267);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(118, 49);
+            this.btnGuardar.Size = new System.Drawing.Size(118, 29);
             this.btnGuardar.TabIndex = 10;
             this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnDesbloquear
             // 
-            this.btnDesbloquear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDesbloquear.Location = new System.Drawing.Point(17, 200);
+            this.btnDesbloquear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDesbloquear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnDesbloquear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDesbloquear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDesbloquear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDesbloquear.Location = new System.Drawing.Point(867, 232);
             this.btnDesbloquear.Name = "btnDesbloquear";
-            this.btnDesbloquear.Size = new System.Drawing.Size(118, 49);
+            this.btnDesbloquear.Size = new System.Drawing.Size(118, 29);
             this.btnDesbloquear.TabIndex = 16;
             this.btnDesbloquear.Text = "Desbloquear";
-            this.btnDesbloquear.UseVisualStyleBackColor = true;
+            this.btnDesbloquear.UseVisualStyleBackColor = false;
             this.btnDesbloquear.Click += new System.EventHandler(this.btnDesbloquear_Click);
             // 
             // btnElimUs
             // 
-            this.btnElimUs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnElimUs.Location = new System.Drawing.Point(17, 145);
+            this.btnElimUs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnElimUs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnElimUs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnElimUs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnElimUs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnElimUs.Location = new System.Drawing.Point(867, 197);
             this.btnElimUs.Name = "btnElimUs";
-            this.btnElimUs.Size = new System.Drawing.Size(118, 49);
+            this.btnElimUs.Size = new System.Drawing.Size(118, 29);
             this.btnElimUs.TabIndex = 15;
             this.btnElimUs.Text = "Eliminar Usuario";
-            this.btnElimUs.UseVisualStyleBackColor = true;
+            this.btnElimUs.UseVisualStyleBackColor = false;
             this.btnElimUs.Click += new System.EventHandler(this.btnElimUs_Click);
             // 
             // btnModUs
             // 
-            this.btnModUs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModUs.Location = new System.Drawing.Point(17, 89);
+            this.btnModUs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnModUs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnModUs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnModUs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModUs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModUs.Location = new System.Drawing.Point(867, 162);
             this.btnModUs.Name = "btnModUs";
-            this.btnModUs.Size = new System.Drawing.Size(118, 49);
+            this.btnModUs.Size = new System.Drawing.Size(118, 29);
             this.btnModUs.TabIndex = 14;
             this.btnModUs.Text = "Modificar Usuario";
-            this.btnModUs.UseVisualStyleBackColor = true;
+            this.btnModUs.UseVisualStyleBackColor = false;
             this.btnModUs.Click += new System.EventHandler(this.btnModUs_Click);
             // 
             // btnCrearUs
             // 
-            this.btnCrearUs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrearUs.Location = new System.Drawing.Point(17, 34);
+            this.btnCrearUs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCrearUs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnCrearUs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCrearUs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCrearUs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCrearUs.Location = new System.Drawing.Point(867, 127);
             this.btnCrearUs.Name = "btnCrearUs";
-            this.btnCrearUs.Size = new System.Drawing.Size(118, 49);
+            this.btnCrearUs.Size = new System.Drawing.Size(118, 29);
             this.btnCrearUs.TabIndex = 13;
             this.btnCrearUs.Text = "Crear Usuario";
-            this.btnCrearUs.UseVisualStyleBackColor = true;
+            this.btnCrearUs.UseVisualStyleBackColor = false;
             this.btnCrearUs.Click += new System.EventHandler(this.btnCrearUs_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.dgvUsuarios);
-            this.groupBox2.Controls.Add(this.rbBloqueados);
-            this.groupBox2.Controls.Add(this.rbActivos);
-            this.groupBox2.Controls.Add(this.rbTodos);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(18, 70);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(842, 379);
-            this.groupBox2.TabIndex = 13;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Usuarios";
             // 
             // dgvUsuarios
             // 
@@ -227,7 +223,7 @@
             this.dgvUsuarios.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.Firebrick;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Firebrick;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -236,14 +232,14 @@
             this.dgvUsuarios.ColumnHeadersHeight = 40;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvUsuarios.EnableHeadersVisualStyles = false;
-            this.dgvUsuarios.Location = new System.Drawing.Point(6, 46);
+            this.dgvUsuarios.Location = new System.Drawing.Point(15, 83);
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.RowHeadersVisible = false;
             this.dgvUsuarios.RowHeadersWidth = 51;
@@ -252,43 +248,40 @@
             this.dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvUsuarios.RowTemplate.Height = 30;
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsuarios.Size = new System.Drawing.Size(830, 327);
+            this.dgvUsuarios.Size = new System.Drawing.Size(832, 327);
             this.dgvUsuarios.TabIndex = 22;
             this.dgvUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick);
             // 
             // rbBloqueados
             // 
-            this.rbBloqueados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbBloqueados.AutoSize = true;
-            this.rbBloqueados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbBloqueados.Location = new System.Drawing.Point(724, 19);
+            this.rbBloqueados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbBloqueados.Location = new System.Drawing.Point(189, 58);
             this.rbBloqueados.Name = "rbBloqueados";
-            this.rbBloqueados.Size = new System.Drawing.Size(109, 20);
+            this.rbBloqueados.Size = new System.Drawing.Size(91, 19);
             this.rbBloqueados.TabIndex = 21;
             this.rbBloqueados.Text = "Bloqueados";
             this.rbBloqueados.UseVisualStyleBackColor = true;
             // 
             // rbActivos
             // 
-            this.rbActivos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbActivos.AutoSize = true;
-            this.rbActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbActivos.Location = new System.Drawing.Point(639, 19);
+            this.rbActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbActivos.Location = new System.Drawing.Point(103, 58);
             this.rbActivos.Name = "rbActivos";
-            this.rbActivos.Size = new System.Drawing.Size(76, 20);
+            this.rbActivos.Size = new System.Drawing.Size(62, 19);
             this.rbActivos.TabIndex = 20;
             this.rbActivos.Text = "Activos";
             this.rbActivos.UseVisualStyleBackColor = true;
             // 
             // rbTodos
             // 
-            this.rbTodos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbTodos.AutoSize = true;
             this.rbTodos.Checked = true;
-            this.rbTodos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbTodos.Location = new System.Drawing.Point(561, 19);
+            this.rbTodos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbTodos.Location = new System.Drawing.Point(24, 58);
             this.rbTodos.Name = "rbTodos";
-            this.rbTodos.Size = new System.Drawing.Size(70, 20);
+            this.rbTodos.Size = new System.Drawing.Size(59, 19);
             this.rbTodos.TabIndex = 19;
             this.rbTodos.TabStop = true;
             this.rbTodos.Text = "Todos";
@@ -325,7 +318,7 @@
             this.gbDatos.Controls.Add(this.txtDoc);
             this.gbDatos.Controls.Add(this.lblDNI);
             this.gbDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbDatos.Location = new System.Drawing.Point(24, 457);
+            this.gbDatos.Location = new System.Drawing.Point(86, 14);
             this.gbDatos.Name = "gbDatos";
             this.gbDatos.Size = new System.Drawing.Size(569, 177);
             this.gbDatos.TabIndex = 14;
@@ -630,7 +623,7 @@
             this.g.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.g.Controls.Add(this.txtMensaje);
             this.g.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.g.Location = new System.Drawing.Point(599, 457);
+            this.g.Location = new System.Drawing.Point(661, 14);
             this.g.Name = "g";
             this.g.Size = new System.Drawing.Size(256, 177);
             this.g.TabIndex = 15;
@@ -640,7 +633,7 @@
             // txtMensaje
             // 
             this.txtMensaje.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtMensaje.Location = new System.Drawing.Point(6, 25);
+            this.txtMensaje.Location = new System.Drawing.Point(6, 26);
             this.txtMensaje.Multiline = true;
             this.txtMensaje.Name = "txtMensaje";
             this.txtMensaje.ReadOnly = true;
@@ -648,39 +641,82 @@
             this.txtMensaje.Size = new System.Drawing.Size(244, 145);
             this.txtMensaje.TabIndex = 17;
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(888, 97);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 17);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Opciones";
+            // 
+            // pUsuario
+            // 
+            this.pUsuario.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pUsuario.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pUsuario.Controls.Add(this.label2);
+            this.pUsuario.Controls.Add(this.btnSalir);
+            this.pUsuario.Controls.Add(this.label1);
+            this.pUsuario.Controls.Add(this.rbBloqueados);
+            this.pUsuario.Controls.Add(this.btnCancelar);
+            this.pUsuario.Controls.Add(this.rbActivos);
+            this.pUsuario.Controls.Add(this.btnCrearUs);
+            this.pUsuario.Controls.Add(this.dgvUsuarios);
+            this.pUsuario.Controls.Add(this.btnGuardar);
+            this.pUsuario.Controls.Add(this.rbTodos);
+            this.pUsuario.Controls.Add(this.btnModUs);
+            this.pUsuario.Controls.Add(this.btnElimUs);
+            this.pUsuario.Controls.Add(this.btnDesbloquear);
+            this.pUsuario.Location = new System.Drawing.Point(12, 12);
+            this.pUsuario.Name = "pUsuario";
+            this.pUsuario.Size = new System.Drawing.Size(1004, 426);
+            this.pUsuario.TabIndex = 17;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.gbDatos);
+            this.panel1.Controls.Add(this.g);
+            this.panel1.Location = new System.Drawing.Point(12, 444);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1004, 206);
+            this.panel1.TabIndex = 18;
+            // 
             // frmUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1028, 662);
-            this.Controls.Add(this.g);
-            this.Controls.Add(this.gbDatos);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pUsuario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1028, 662);
             this.Name = "frmUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "Gestion Usuarios";
             this.Load += new System.EventHandler(this.FrmUsuario_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.gbDatos.ResumeLayout(false);
             this.gbDatos.PerformLayout();
             this.g.ResumeLayout(false);
             this.g.PerformLayout();
+            this.pUsuario.ResumeLayout(false);
+            this.pUsuario.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
@@ -688,7 +724,6 @@
         private System.Windows.Forms.Button btnElimUs;
         private System.Windows.Forms.Button btnModUs;
         private System.Windows.Forms.Button btnCrearUs;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton rbBloqueados;
         private System.Windows.Forms.RadioButton rbActivos;
         private System.Windows.Forms.RadioButton rbTodos;
@@ -723,5 +758,8 @@
         private System.Windows.Forms.Panel ptxtMail;
         private System.Windows.Forms.Panel ptxtTel;
         private System.Windows.Forms.Panel ptxtDir;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel pUsuario;
+        private System.Windows.Forms.Panel panel1;
     }
 }

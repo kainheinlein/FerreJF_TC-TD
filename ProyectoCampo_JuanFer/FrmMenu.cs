@@ -16,9 +16,8 @@ namespace ProyectoCampo_JuanFer
 {
     public partial class frmMenu : Form
     {
-        private frmUsuario frmUsuario;
-        private frmCliente frmCliente;
-        private frmCarrito frmCarrito;
+        public static ToolStripMenuItem opcActivo = null;
+        public static Form formActivo = null;
         public frmMenu()
         {
             InitializeComponent();
@@ -42,12 +41,12 @@ namespace ProyectoCampo_JuanFer
         {
             lblUsuario.Text = "Usuario: Sin Conexion";
             iniciarSesionToolStripMenuItem.Enabled = true;
-            cerrarSesionToolStripMenuItem.Enabled = false;
-            tsAdmin.Enabled = false;
-            tsReportes.Enabled = false;
-            tsGestion.Enabled = false;
-            realizarCobroToolStripMenuItem.Enabled = false;
-            cambiarClaveToolStripMenuItem.Enabled = false;
+            cerrarSesionToolStripMenuItem.Visible = false;
+            tsAdmin.Visible = false;
+            tsReportes.Visible = false;
+            tsGestion.Visible = false;
+            realizarCobroToolStripMenuItem.Visible = false;
+            cambiarClaveToolStripMenuItem.Visible = false;
         }
 
         #endregion
@@ -61,6 +60,25 @@ namespace ProyectoCampo_JuanFer
             {
                 FormDesconectado();
             }
+        }
+
+        private void OpenForm(ToolStripMenuItem opc, Form frm)
+        {
+            if(opcActivo != null)
+            {
+                opcActivo.BackColor = Color.WhiteSmoke;
+            }
+            opc.BackColor = Color.Gainsboro;
+            opcActivo = opc;
+
+            if(formActivo != null) { formActivo.Close(); }
+            formActivo = frm;
+            frm.MdiParent = this;
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+
+            frm.Show();
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -96,20 +114,7 @@ namespace ProyectoCampo_JuanFer
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmUsuario == null || frmUsuario.IsDisposed)
-            {
-                frmUsuario = new frmUsuario()
-                {
-                    MdiParent = this,
-                    Dock = DockStyle.Fill,
-                    FormBorderStyle = FormBorderStyle.None
-                };
-                frmUsuario.Show();
-            }
-            else
-            {
-                frmUsuario.BringToFront();
-            }
+            OpenForm(tsAdmin, new frmUsuario());
         }
 
         private void FrmMenu_Resize(object sender, EventArgs e)
@@ -125,38 +130,18 @@ namespace ProyectoCampo_JuanFer
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmCliente == null || frmCliente.IsDisposed)
-            {
-                frmCliente = new frmCliente()
-                {
-                    MdiParent = this,
-                    Dock = DockStyle.Fill,
-                    FormBorderStyle = FormBorderStyle.None
-                };
-                frmCliente.Show();
-            }
-            else
-            {
-                frmCliente.BringToFront();
-            }
+            OpenForm(tsGestion, new frmCliente());
+
         }
 
-        private void productosToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void CarritoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmCarrito == null || frmCarrito.IsDisposed)
-            {
-                frmCarrito = new frmCarrito()
-                {
-                    MdiParent = this,
-                    Dock = DockStyle.Fill,
-                    FormBorderStyle = FormBorderStyle.None
-                };
-                frmCarrito.Show();
-            }
-            else
-            {
-                frmCarrito.BringToFront();
-            }
+            OpenForm(tsVentas, new frmStock());
+        }
+
+        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

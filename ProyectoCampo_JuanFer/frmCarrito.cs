@@ -16,5 +16,16 @@ namespace ProyectoCampo_JuanFer
         {
             InitializeComponent();
         }
+        public frmCarrito(DataTable dt)
+        {
+
+        }
+
+        private void frmCarrito_Load(object sender, EventArgs e)
+        {
+            frmMenu.formActivo = this;
+        }
+
+
     }
 }

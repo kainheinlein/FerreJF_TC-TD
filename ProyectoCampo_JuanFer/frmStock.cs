@@ -16,5 +16,22 @@ namespace ProyectoCampo_JuanFer
         {
             InitializeComponent();
         }
+
+        private void btnCarrito_Click(object sender, EventArgs e)
+        {
+            frmCarrito frmCarrito = new frmCarrito
+            {
+                MdiParent = ActiveForm,
+                TopLevel = false,
+                Dock = DockStyle.Fill
+            };
+            this.Close();
+            frmCarrito.Show();
+        }
+
+        private void frmStock_Load(object sender, EventArgs e)
+        {
+            btnCarrito.Enabled = true;
+        }
     }
 }
