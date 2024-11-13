@@ -41,7 +41,11 @@ namespace ProyectoCampo_JuanFer
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-
+            lblError.Text = "";
+            /*Inicio Login Prueba*/
+            txtUsuario.Text = "sanchezcarlos";
+            txtContra.Text = "prueba1";
+            /*Fin Login Prueba*/
         }
 
         private void txtUsuario_TextChanged(object sender, EventArgs e)
@@ -161,6 +165,7 @@ namespace ProyectoCampo_JuanFer
 
         private void lblSinConexion_Click(object sender, EventArgs e)
         {
+            usuario.Logout();
             frmMenu frm = new frmMenu();
             frm.Show();
             this.Hide();
@@ -168,11 +173,9 @@ namespace ProyectoCampo_JuanFer
 
         private void lblSinConexion_MouseHover(object sender, EventArgs e)
         {
-            //lblSinConexion.Cursor = Cursors.Hand;
-
             var font = ((Label)sender).Font;
 
-            ((Label)sender).Font = new Font(font,FontStyle.Bold);
+            ((Label)sender).Font = new Font(font, FontStyle.Bold);
 
             font.Dispose();
         }

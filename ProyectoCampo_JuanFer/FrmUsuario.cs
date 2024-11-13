@@ -20,7 +20,7 @@ namespace ProyectoCampo_JuanFer
             InitializeComponent();
         }
         UsuarioBE auxUsuario;
-        GestionBLL gestion = new GestionBLL();
+        NegocioBLL gestion = new NegocioBLL();
         UsuarioBLL usuarioBLL = new UsuarioBLL();
         int varMod = 0; //Indica si la modificacion esta activa
         List<string> roles = new List<string>() { "Cajero", "Vendedor", "Administrador" };
@@ -29,16 +29,25 @@ namespace ProyectoCampo_JuanFer
 
         private void ConfigDefaultForm()
         {
-            btnGuardar.Enabled = false;
-            btnCancelar.Enabled = false;
+            HabilitarBtn(btnGuardar, false);
+            HabilitarBtn(btnCancelar, false);
             cmbRol.Enabled = false;
-            btnCrearUs.Enabled = true;
-            btnModUs.Enabled = false;
-            btnElimUs.Enabled = false;
-            btnDesbloquear.Enabled = false;
+            HabilitarBtn(btnCrearUs, true);
+            HabilitarBtn(btnModUs, false);
+            HabilitarBtn(btnElimUs, false);
+            HabilitarBtn(btnDesbloquear, false);
             dgvUsuarios.Enabled = true;
             chkActivo.Enabled = false;
             varMod = 0;
+            foreach(Control c in pUsuario.Controls)
+            {
+                if (c is Button btn)
+                {
+                    if (btn.Enabled) { btn.Font = new Font(btn.Font.Name, btn.Font.Size, FontStyle.Bold); btn.ForeColor = Color.Black; }
+                    else { btn.Font = new Font(btn.Font.Name, btn.Font.Size, FontStyle.Regular); }
+                    c.BackColor = Color.FromArgb(255, 192, 192);
+                }
+            }
             LimpiarDatos();
 
             foreach (Control control in gbDatos.Controls)
@@ -48,6 +57,37 @@ namespace ProyectoCampo_JuanFer
                     textBox.Enabled = false;
                 }
             }
+        }
+
+        private void HabilitarBtn(Button btn, bool tipo)
+        {
+            if(tipo)
+            {
+                btn.Enabled = tipo;
+                btn.Font = new Font(btn.Font.Name, btnGuardar.Font.Size, FontStyle.Bold);
+                btn.ForeColor = Color.Black;
+            }
+            else
+            {
+                btn.Font = new Font(btn.Font.Name, btnGuardar.Font.Size, FontStyle.Regular);
+                btn.Enabled = tipo;
+            }
+        }
+
+        private Button ultimoBoton = null;
+
+        private void ClickBoton(object sender, EventArgs e)
+        {
+            if(ultimoBoton != null)
+            {
+                ultimoBoton.BackColor = Color.FromArgb(255, 192, 192);
+            }
+            
+            if((sender as Button).Text != "Cancelar")
+            {
+                (sender as Button).BackColor = Color.LightCoral;
+            }
+            ultimoBoton = (sender as Button);
         }
 
         private void HabilitarCampos()
@@ -81,20 +121,27 @@ namespace ProyectoCampo_JuanFer
             txtDoc.Focus();
         }
 
-        private void ConfigDGV(DataTable dt)
+        private void ConfigDGV(List<UsuarioBE> usuarios)
         {
-            dgvUsuarios.DataSource = dt;
-            dgvUsuarios.Columns["Direccion"].Visible = false;
-            dgvUsuarios.Columns["Telefono"].Visible = false;
-            dgvUsuarios.Columns["Email"].Visible = false;
-            dgvUsuarios.Columns["Codigo"].Visible = false;
-            dgvUsuarios.Columns["Contraseña"].Visible = false;
+            dgvUsuarios.DataSource = usuarios;
+            dgvUsuarios.Columns["dir"].Visible = false;
+            dgvUsuarios.Columns["tel"].Visible = false;
+            dgvUsuarios.Columns["email"].Visible = false;
+            dgvUsuarios.Columns["cod"].Visible = false;
+            dgvUsuarios.Columns["pass"].Visible = false;
+            dgvUsuarios.Columns[1].HeaderText = "DNI";
+            dgvUsuarios.Columns[2].HeaderText = "Nombre";
+            dgvUsuarios.Columns[3].HeaderText = "Apellido";
+            dgvUsuarios.Columns[4].HeaderText = "Usuario";
+            dgvUsuarios.Columns[5].HeaderText = "Rol";
+            dgvUsuarios.Columns[10].HeaderText = "Activo";
+            dgvUsuarios.Columns[11].HeaderText = "Bloqueado";
             dgvUsuarios.ReadOnly = true;
         }
 
         private void ActualizarDGV()
         {
-            dgvUsuarios.DataSource = gestion.ObtenerUsuarios();
+            dgvUsuarios.DataSource = gestion.ListarUsuarios();
             ConfigDefaultForm();
         }
 
@@ -122,22 +169,16 @@ namespace ProyectoCampo_JuanFer
             return null;
         }
 
-        private string GenerarPass(string ape,string dni)
-        {
-            string pass = ape.Substring(0, 3) + dni.Substring(0, 3);
-            return pass;
-        }
-
         private void GuardarEnabled()
         {
             if (txtNom.Text != "" & txtApe.Text != "" & txtDoc.Text != ""
                     & txtUsu.Text != "" & cmbRol.SelectedValue != null)
             {
-                btnGuardar.Enabled = true;
+                HabilitarBtn(btnGuardar,true);
             }
             else
             {
-                btnGuardar.Enabled = false;
+                HabilitarBtn(btnGuardar,false);
             }
         }
 
@@ -338,7 +379,7 @@ namespace ProyectoCampo_JuanFer
         {
             try
             {
-                ConfigDGV(gestion.ObtenerUsuarios());
+                ConfigDGV(gestion.ListarUsuarios());
                 cmbRol.DataSource = roles;
                 ConfigDefaultForm();
             }
@@ -348,6 +389,8 @@ namespace ProyectoCampo_JuanFer
         private void btnSalir_Click(object sender, EventArgs e)
         {
             auxUsuario = null;
+            Control control = btnSalir.Parent;
+            frmMenu.opcActivo.BackColor = Color.WhiteSmoke;
             this.Close();
         }
 
@@ -358,57 +401,59 @@ namespace ProyectoCampo_JuanFer
             {
                 DataGridViewRow fila = dgvUsuarios.Rows[e.RowIndex];
 
-                txtDoc.Text = fila.Cells["DNI"].Value.ToString();
-                txtNom.Text = fila.Cells["Nombre"].Value.ToString();
-                txtApe.Text = fila.Cells["Apellido"].Value.ToString();
-                cmbRol.SelectedIndex = cmbRol.Items.IndexOf(Convert.ToString(fila.Cells["Rol"].Value));
-                txtUsu.Text = fila.Cells["Usuario"].Value.ToString();
-                txtDir.Text = fila.Cells["Direccion"].Value.ToString();
-                txtTel.Text = fila.Cells["Telefono"].Value.ToString();
-                txtMail.Text = fila.Cells["Email"].Value.ToString();
-                if(Convert.ToBoolean(fila.Cells["Activo"].Value) == true)
+                txtDoc.Text = fila.Cells["dni"].Value.ToString();
+                txtNom.Text = fila.Cells["nomb"].Value.ToString();
+                txtApe.Text = fila.Cells["ape"].Value.ToString();
+                cmbRol.SelectedIndex = cmbRol.Items.IndexOf(Convert.ToString(fila.Cells["rol"].Value));
+                txtUsu.Text = fila.Cells["user"].Value.ToString();
+                txtDir.Text = fila.Cells["dir"].Value.ToString();
+                txtTel.Text = fila.Cells["tel"].Value.ToString();
+                txtMail.Text = fila.Cells["email"].Value.ToString();
+                if(Convert.ToBoolean(fila.Cells["estado"].Value) == true)
                 {
                     chkActivo.Checked = true;
-                    btnElimUs.Enabled = true;
+                    HabilitarBtn(btnElimUs, true);
                 }
                 else
                 {
                     chkActivo.Checked = false;
-                    btnElimUs.Enabled = false;
+                    HabilitarBtn(btnElimUs, false);
                 }
-                if (Convert.ToBoolean(fila.Cells["Bloqueado"].Value) == true)
+                if (Convert.ToBoolean(fila.Cells["bloq"].Value) == true)
                 {
                     chkBloqueado.Checked = true;
-                    btnDesbloquear.Enabled = true;
+                    HabilitarBtn(btnDesbloquear, true);
                 }
                 else
                 { 
                     chkBloqueado.Checked = false;
-                    btnDesbloquear.Enabled = false; 
+                    HabilitarBtn(btnDesbloquear, false);
                 }
-                btnCancelar.Enabled = true;
-                btnModUs.Enabled = true;
-                btnGuardar.Enabled = false;
+                HabilitarBtn(btnCancelar, true);
+                HabilitarBtn(btnModUs, true);
+                HabilitarBtn(btnGuardar, false);
             }
             else { ConfigDefaultForm(); }
         }
 
         private void btnCrearUs_Click(object sender, EventArgs e)
         {
-            btnCancelar.Enabled = true;
-            btnDesbloquear.Enabled = false;
-            btnCrearUs.Enabled = false;
-            btnElimUs.Enabled = false;
-            btnModUs.Enabled = false;
+            HabilitarBtn(btnCancelar,true);
+            HabilitarBtn(btnDesbloquear,false);
+            HabilitarBtn(btnCrearUs, false);
+            HabilitarBtn(btnElimUs, false);
+            HabilitarBtn(btnModUs, false);
             dgvUsuarios.Enabled = false;
             LimpiarDatos();
             HabilitarCampos();
             chkActivo.Checked = true;
+            ClickBoton(sender, e);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             ConfigDefaultForm();
+            ClickBoton(sender, e);
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -445,7 +490,7 @@ namespace ProyectoCampo_JuanFer
                     {
                         try
                         {
-                            us.pass = GenerarPass(us.ape, us.dni.ToString());
+                            us.pass = usuarioBLL.GenerarPass(us.ape, us.dni.ToString());
                             usuarioBLL.CrearUsuario(us);
                             ActualizarDGV();
                             LlenarMensaje($"El usuario -- {us.user} -- fue creado exitosamente");
@@ -461,7 +506,6 @@ namespace ProyectoCampo_JuanFer
                 {
                     try
                     {
-
                         us.cod = Convert.ToInt32(dgvUsuarios.SelectedRows[0].Cells[0].Value);
                         usuarioBLL.ActualizarUsuario(us);
                         ActualizarDGV();
@@ -479,14 +523,14 @@ namespace ProyectoCampo_JuanFer
         private void btnModUs_Click(object sender, EventArgs e)
         {
             varMod = 1;
-            btnCancelar.Enabled = true;
-            btnDesbloquear.Enabled = false;
-            btnCrearUs.Enabled = false;
-            btnElimUs.Enabled = false;
-            btnModUs.Enabled = false;
+            HabilitarBtn(btnCancelar, true);
+            HabilitarBtn(btnDesbloquear, false);
+            HabilitarBtn(btnCrearUs, false);
+            HabilitarBtn(btnElimUs, false);
+            HabilitarBtn(btnModUs, false);
             dgvUsuarios.Enabled = false;
             chkActivo.Enabled = true;
-            btnGuardar.Enabled = true;
+            HabilitarBtn(btnGuardar, true);
             HabilitarCampos();
             if( txtTel.Text == " " ) { txtTel.Clear(); }
             if( txtDir.Text == " " ) { txtDir.Clear(); }
@@ -501,7 +545,7 @@ namespace ProyectoCampo_JuanFer
                 {
                     UsuarioBE aux = new UsuarioBE();
                     aux = ExtraerDatos(dgvUsuarios.SelectedRows[0]);
-                    aux.pass = GenerarPass(aux.ape, aux.dni.ToString());
+                    aux.pass = usuarioBLL.GenerarPass(aux.ape, aux.dni.ToString());
                     usuarioBLL.DesbloquearUS(aux);
                     LlenarMensaje("Usuario desbloqueado exitosamente");
                     ActualizarDGV();
