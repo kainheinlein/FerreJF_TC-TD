@@ -110,12 +110,12 @@ namespace Entidad_BE
         public UsuarioBE CrearUsuario(string[] datos)
         {
             this.cod = Convert.ToInt32(datos[0]);
-            this.dni = Convert.ToInt32(datos[1]);
-            this.nomb = datos[2];
-            this.ape = datos[3];
+            this.dni = Convert.ToInt32(datos[3]);
+            this.nomb = datos[1];
+            this.ape = datos[2];
             this.user = datos[4];
-            this.rol = datos[5];
-            this.pass = datos[6];
+            this.rol = datos[6];
+            this.pass = datos[5];
             this.dir = datos[7];
             this.tel = (datos[8]);
             this.email = datos[9];

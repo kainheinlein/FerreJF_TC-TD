@@ -117,5 +117,11 @@ namespace Negocio_BLL
         {
             mpUsuario.ActualizarUsuario(us);
         }
+
+        public string GenerarPass(string ape, string dni)
+        {
+            string pass = ape.Substring(0, 3) + dni.Substring(0, 3);
+            return pass;
+        }
     }
 }

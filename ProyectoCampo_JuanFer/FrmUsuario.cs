@@ -20,7 +20,7 @@ namespace ProyectoCampo_JuanFer
             InitializeComponent();
         }
         UsuarioBE auxUsuario;
-        GestionBLL gestion = new GestionBLL();
+        NegocioBLL gestion = new NegocioBLL();
         UsuarioBLL usuarioBLL = new UsuarioBLL();
         int varMod = 0; //Indica si la modificacion esta activa
         List<string> roles = new List<string>() { "Cajero", "Vendedor", "Administrador" };
@@ -78,7 +78,6 @@ namespace ProyectoCampo_JuanFer
 
         private void ClickBoton(object sender, EventArgs e)
         {
-            //Recorda que si asignas ultimoBoton en null, verifica que este no sea null, para evitar nullReference
             if(ultimoBoton != null)
             {
                 ultimoBoton.BackColor = Color.FromArgb(255, 192, 192);
@@ -122,20 +121,27 @@ namespace ProyectoCampo_JuanFer
             txtDoc.Focus();
         }
 
-        private void ConfigDGV(DataTable dt)
+        private void ConfigDGV(List<UsuarioBE> usuarios)
         {
-            dgvUsuarios.DataSource = dt;
-            dgvUsuarios.Columns["Direccion"].Visible = false;
-            dgvUsuarios.Columns["Telefono"].Visible = false;
-            dgvUsuarios.Columns["Email"].Visible = false;
-            dgvUsuarios.Columns["Codigo"].Visible = false;
-            dgvUsuarios.Columns["Contraseña"].Visible = false;
+            dgvUsuarios.DataSource = usuarios;
+            dgvUsuarios.Columns["dir"].Visible = false;
+            dgvUsuarios.Columns["tel"].Visible = false;
+            dgvUsuarios.Columns["email"].Visible = false;
+            dgvUsuarios.Columns["cod"].Visible = false;
+            dgvUsuarios.Columns["pass"].Visible = false;
+            dgvUsuarios.Columns[1].HeaderText = "DNI";
+            dgvUsuarios.Columns[2].HeaderText = "Nombre";
+            dgvUsuarios.Columns[3].HeaderText = "Apellido";
+            dgvUsuarios.Columns[4].HeaderText = "Usuario";
+            dgvUsuarios.Columns[5].HeaderText = "Rol";
+            dgvUsuarios.Columns[10].HeaderText = "Activo";
+            dgvUsuarios.Columns[11].HeaderText = "Bloqueado";
             dgvUsuarios.ReadOnly = true;
         }
 
         private void ActualizarDGV()
         {
-            dgvUsuarios.DataSource = gestion.ObtenerUsuarios();
+            dgvUsuarios.DataSource = gestion.ListarUsuarios();
             ConfigDefaultForm();
         }
 
@@ -161,12 +167,6 @@ namespace ProyectoCampo_JuanFer
                 return auxUsuario;
             }
             return null;
-        }
-
-        private string GenerarPass(string ape,string dni)
-        {
-            string pass = ape.Substring(0, 3) + dni.Substring(0, 3);
-            return pass;
         }
 
         private void GuardarEnabled()
@@ -379,7 +379,7 @@ namespace ProyectoCampo_JuanFer
         {
             try
             {
-                ConfigDGV(gestion.ObtenerUsuarios());
+                ConfigDGV(gestion.ListarUsuarios());
                 cmbRol.DataSource = roles;
                 ConfigDefaultForm();
             }
@@ -401,15 +401,15 @@ namespace ProyectoCampo_JuanFer
             {
                 DataGridViewRow fila = dgvUsuarios.Rows[e.RowIndex];
 
-                txtDoc.Text = fila.Cells["DNI"].Value.ToString();
-                txtNom.Text = fila.Cells["Nombre"].Value.ToString();
-                txtApe.Text = fila.Cells["Apellido"].Value.ToString();
-                cmbRol.SelectedIndex = cmbRol.Items.IndexOf(Convert.ToString(fila.Cells["Rol"].Value));
-                txtUsu.Text = fila.Cells["Usuario"].Value.ToString();
-                txtDir.Text = fila.Cells["Direccion"].Value.ToString();
-                txtTel.Text = fila.Cells["Telefono"].Value.ToString();
-                txtMail.Text = fila.Cells["Email"].Value.ToString();
-                if(Convert.ToBoolean(fila.Cells["Activo"].Value) == true)
+                txtDoc.Text = fila.Cells["dni"].Value.ToString();
+                txtNom.Text = fila.Cells["nomb"].Value.ToString();
+                txtApe.Text = fila.Cells["ape"].Value.ToString();
+                cmbRol.SelectedIndex = cmbRol.Items.IndexOf(Convert.ToString(fila.Cells["rol"].Value));
+                txtUsu.Text = fila.Cells["user"].Value.ToString();
+                txtDir.Text = fila.Cells["dir"].Value.ToString();
+                txtTel.Text = fila.Cells["tel"].Value.ToString();
+                txtMail.Text = fila.Cells["email"].Value.ToString();
+                if(Convert.ToBoolean(fila.Cells["estado"].Value) == true)
                 {
                     chkActivo.Checked = true;
                     HabilitarBtn(btnElimUs, true);
@@ -419,7 +419,7 @@ namespace ProyectoCampo_JuanFer
                     chkActivo.Checked = false;
                     HabilitarBtn(btnElimUs, false);
                 }
-                if (Convert.ToBoolean(fila.Cells["Bloqueado"].Value) == true)
+                if (Convert.ToBoolean(fila.Cells["bloq"].Value) == true)
                 {
                     chkBloqueado.Checked = true;
                     HabilitarBtn(btnDesbloquear, true);
@@ -490,7 +490,7 @@ namespace ProyectoCampo_JuanFer
                     {
                         try
                         {
-                            us.pass = GenerarPass(us.ape, us.dni.ToString());
+                            us.pass = usuarioBLL.GenerarPass(us.ape, us.dni.ToString());
                             usuarioBLL.CrearUsuario(us);
                             ActualizarDGV();
                             LlenarMensaje($"El usuario -- {us.user} -- fue creado exitosamente");
@@ -545,7 +545,7 @@ namespace ProyectoCampo_JuanFer
                 {
                     UsuarioBE aux = new UsuarioBE();
                     aux = ExtraerDatos(dgvUsuarios.SelectedRows[0]);
-                    aux.pass = GenerarPass(aux.ape, aux.dni.ToString());
+                    aux.pass = usuarioBLL.GenerarPass(aux.ape, aux.dni.ToString());
                     usuarioBLL.DesbloquearUS(aux);
                     LlenarMensaje("Usuario desbloqueado exitosamente");
                     ActualizarDGV();

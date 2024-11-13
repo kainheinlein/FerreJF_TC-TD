@@ -27,9 +27,9 @@ namespace Acceso_DAL
         public void CerrarConexion()
         {
             _conexion.Close();
-            _conexion.Dispose();//Libera memoria
-            _conexion=null;
-            GC.Collect();
+            //_conexion.Dispose();//Libera memoria
+            //_conexion=null;
+            //GC.Collect();
         }
 
         public bool VerificarConexion()

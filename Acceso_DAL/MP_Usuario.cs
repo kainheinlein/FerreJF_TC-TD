@@ -16,12 +16,30 @@ namespace Acceso_DAL
     {
         AccesoDatos conexDB = new AccesoDatos();
 
-        public DataTable ObtenerUsuarios()
+        public List<UsuarioBE> ListarUsuarios()
         {
-            SqlParameter[] parametros = new SqlParameter[1];
-            parametros[0] = new SqlParameter("@tabla", "Usuarios");
-            DataTable dt = conexDB.LeerTabla("SP_ExtTabla", parametros);
-            return dt;
+            List<UsuarioBE> usuarios = new List<UsuarioBE>();
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@tabla", "Usuarios");
+            DataTable dt = conexDB.LeerTabla("SP_ExtTabla", param);
+            foreach (DataRow dr in dt.Rows)
+            {
+                UsuarioBE us = new UsuarioBE();
+                us.cod = Convert.ToInt32(dr[0].ToString());
+                us.dni = Convert.ToInt32(dr[1].ToString());
+                us.nomb = dr[2].ToString();
+                us.ape = dr[3].ToString();
+                us.user = dr[4].ToString();
+                us.rol = dr[5].ToString();
+                us.pass = dr[6].ToString();
+                us.dir = dr[7].ToString();
+                us.tel = dr[8].ToString();
+                us.email = dr[9].ToString();
+                us.estado = Convert.ToBoolean(dr[10].ToString());
+                us.bloq = Convert.ToBoolean(dr[11].ToString());
+                usuarios.Add(us);
+            }
+            return usuarios;
         }
 
         public int Login(UsuarioBE us)

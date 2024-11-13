@@ -44,7 +44,7 @@ namespace ProyectoCampo_JuanFer
             lblError.Text = "";
             /*Inicio Login Prueba*/
             txtUsuario.Text = "sanchezcarlos";
-            txtContra.Text = "prueba2";
+            txtContra.Text = "prueba1";
             /*Fin Login Prueba*/
         }
 
