@@ -399,6 +399,7 @@ namespace ProyectoCampo_JuanFer
         {
             if (e.RowIndex >= 0)
             {
+                
                 DataGridViewRow fila = dgvUsuarios.Rows[e.RowIndex];
 
                 txtDoc.Text = fila.Cells["dni"].Value.ToString();
@@ -468,7 +469,7 @@ namespace ProyectoCampo_JuanFer
                 {
                     foreach (DataGridViewRow fila in dgvUsuarios.Rows)
                     {
-                        if (Convert.ToInt32(fila.Cells[1].Value) == us.dni)
+                        if (Convert.ToInt32(fila.Cells[3].Value) == us.dni)
                         {
                             LlenarMensaje("El DNI ingresado ya cuenta con un usuario");
                             ConfigDefaultForm();

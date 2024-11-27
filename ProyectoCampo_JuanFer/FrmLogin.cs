@@ -2,6 +2,8 @@
 using Negocio_BLL;
 using Servicios;
 using System;
+using System.Diagnostics;
+using System.ServiceProcess;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,10 +43,21 @@ namespace ProyectoCampo_JuanFer
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (scBase.Status == ServiceControllerStatus.Stopped)
+                {
+                    scBase.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Occurio un error: " +  ex.Message,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             lblError.Text = "";
             /*Inicio Login Prueba*/
             txtUsuario.Text = "sanchezcarlos";
-            txtContra.Text = "prueba1";
+            txtContra.Text = "prueba2";
             /*Fin Login Prueba*/
         }
 

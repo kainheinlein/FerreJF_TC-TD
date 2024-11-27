@@ -342,7 +342,7 @@
             this.rbDNI.AutoSize = true;
             this.rbDNI.Checked = true;
             this.rbDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbDNI.Location = new System.Drawing.Point(28, 34);
+            this.rbDNI.Location = new System.Drawing.Point(16, 34);
             this.rbDNI.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbDNI.Name = "rbDNI";
             this.rbDNI.Size = new System.Drawing.Size(51, 20);

@@ -27,9 +27,6 @@ namespace Acceso_DAL
         public void CerrarConexion()
         {
             _conexion.Close();
-            //_conexion.Dispose();//Libera memoria
-            //_conexion=null;
-            //GC.Collect();
         }
 
         public bool VerificarConexion()
@@ -71,17 +68,25 @@ namespace Acceso_DAL
 
         public void Escribir(string sp, SqlParameter[] parametros)
         {
+            SqlTransaction tr;
+            AbrirConexion();
+            tr = conexion.BeginTransaction();
             try
             {
-                AbrirConexion();
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = sp;
                 cmd.Connection = conexion;
                 cmd.Parameters.AddRange(parametros);
+                cmd.Transaction = tr;
                 cmd.ExecuteNonQuery();
+                tr.Commit();
             }
-            catch(Exception e) { throw e; }
+            catch(Exception e)
+            {
+                tr.Rollback();
+                throw e;
+            }
             finally { CerrarConexion(); }
         }
 
