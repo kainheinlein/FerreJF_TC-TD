@@ -144,5 +144,10 @@ namespace ProyectoCampo_JuanFer
         {
             
         }
+
+        private void realizarCobroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

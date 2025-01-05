@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.txtUsuario = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblContra = new System.Windows.Forms.Label();
-            this.txtContra = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cambiarIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,23 +39,17 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblSinConexion = new System.Windows.Forms.Label();
             this.scBase = new System.ServiceProcess.ServiceController();
+            this.txtUsuario = new ProyectoCampo_JuanFer.ucAlfaNum();
+            this.txtContra = new ProyectoCampo_JuanFer.ucAlfaNum();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Location = new System.Drawing.Point(110, 230);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(266, 26);
-            this.txtUsuario.TabIndex = 0;
-            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
             // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(105, 204);
+            this.lblUsuario.Location = new System.Drawing.Point(129, 208);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(79, 22);
             this.lblUsuario.TabIndex = 1;
@@ -67,21 +59,11 @@
             // 
             this.lblContra.AutoSize = true;
             this.lblContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContra.Location = new System.Drawing.Point(105, 276);
+            this.lblContra.Location = new System.Drawing.Point(129, 276);
             this.lblContra.Name = "lblContra";
             this.lblContra.Size = new System.Drawing.Size(113, 22);
             this.lblContra.TabIndex = 3;
             this.lblContra.Text = "Contraseña";
-            // 
-            // txtContra
-            // 
-            this.txtContra.Location = new System.Drawing.Point(110, 302);
-            this.txtContra.Name = "txtContra";
-            this.txtContra.Size = new System.Drawing.Size(266, 26);
-            this.txtContra.TabIndex = 2;
-            this.txtContra.UseSystemPasswordChar = true;
-            this.txtContra.TextChanged += new System.EventHandler(this.txtContra_TextChanged);
-            this.txtContra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContra_KeyPress);
             // 
             // pictureBox1
             // 
@@ -104,7 +86,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(488, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(488, 33);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -118,7 +100,7 @@
             // lblError
             // 
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(10, 412);
+            this.lblError.Location = new System.Drawing.Point(10, 418);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(464, 46);
             this.lblError.TabIndex = 7;
@@ -128,7 +110,6 @@
             // 
             this.btnIniciar.BackColor = System.Drawing.Color.Gray;
             this.btnIniciar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIniciar.Enabled = false;
             this.btnIniciar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -176,21 +157,45 @@
             this.scBase.MachineName = "KAIN-NB";
             this.scBase.ServiceName = "MSSQL$SQLEXPRESS";
             // 
+            // txtUsuario
+            // 
+            this.txtUsuario.isPass = false;
+            this.txtUsuario.Location = new System.Drawing.Point(109, 219);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.ok = false;
+            this.txtUsuario.Size = new System.Drawing.Size(269, 55);
+            this.txtUsuario.TabIndex = 11;
+            this.txtUsuario.texto = "";
+            this.txtUsuario.Leave += new System.EventHandler(this.txtUsuario_Leave);
+            // 
+            // txtContra
+            // 
+            this.txtContra.isPass = false;
+            this.txtContra.Location = new System.Drawing.Point(109, 292);
+            this.txtContra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtContra.Name = "txtContra";
+            this.txtContra.ok = false;
+            this.txtContra.Size = new System.Drawing.Size(269, 55);
+            this.txtContra.TabIndex = 12;
+            this.txtContra.texto = "";
+            this.txtContra.Load += new System.EventHandler(this.txtContra_Load);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(488, 514);
+            this.Controls.Add(this.lblContra);
+            this.Controls.Add(this.lblUsuario);
+            this.Controls.Add(this.txtContra);
+            this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.lblSinConexion);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblContra);
-            this.Controls.Add(this.txtContra);
-            this.Controls.Add(this.lblUsuario);
-            this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -210,11 +215,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblContra;
-        private System.Windows.Forms.TextBox txtContra;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem cambiarIdiomaToolStripMenuItem;
@@ -223,5 +225,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblSinConexion;
         private System.ServiceProcess.ServiceController scBase;
+        private ucAlfaNum txtUsuario;
+        private ucAlfaNum txtContra;
     }
 }

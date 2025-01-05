@@ -34,25 +34,20 @@
             // 
             // txtTexto
             // 
-            this.txtTexto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTexto.Location = new System.Drawing.Point(3, 3);
+            this.txtTexto.Location = new System.Drawing.Point(18, 18);
             this.txtTexto.Name = "txtTexto";
-            this.txtTexto.Size = new System.Drawing.Size(151, 21);
+            this.txtTexto.Size = new System.Drawing.Size(198, 28);
             this.txtTexto.TabIndex = 1;
+            this.txtTexto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContra_KeyPress);
             this.txtTexto.Leave += new System.EventHandler(this.txtTexto_Leave);
             // 
             // ptxtTexto
             // 
-            this.ptxtTexto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.ptxtTexto.BackColor = System.Drawing.Color.DimGray;
-            this.ptxtTexto.Location = new System.Drawing.Point(3, 22);
+            this.ptxtTexto.Location = new System.Drawing.Point(18, 43);
             this.ptxtTexto.Name = "ptxtTexto";
-            this.ptxtTexto.Size = new System.Drawing.Size(151, 2);
+            this.ptxtTexto.Size = new System.Drawing.Size(198, 3);
             this.ptxtTexto.TabIndex = 20;
             // 
             // ucAlfaNum
@@ -62,7 +57,7 @@
             this.Controls.Add(this.ptxtTexto);
             this.Controls.Add(this.txtTexto);
             this.Name = "ucAlfaNum";
-            this.Size = new System.Drawing.Size(157, 26);
+            this.Size = new System.Drawing.Size(233, 61);
             this.Load += new System.EventHandler(this.ucUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

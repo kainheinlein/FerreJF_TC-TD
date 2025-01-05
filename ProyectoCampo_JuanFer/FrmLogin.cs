@@ -26,23 +26,9 @@ namespace ProyectoCampo_JuanFer
 
         UsuarioBLL usuario = new UsuarioBLL();
 
-        #region Funciones
-        public void IniciarEnabled()
-        {
-            if (txtUsuario.Text != "" & txtContra.Text != "")
-            {
-                btnIniciar.Enabled = true;
-            }
-            else
-            {
-                btnIniciar.Enabled = false;
-            }
-        }
-
-        #endregion
-
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+            txtContra.boton = this.btnIniciar;
             try
             {
                 if (scBase.Status == ServiceControllerStatus.Stopped)
@@ -52,34 +38,14 @@ namespace ProyectoCampo_JuanFer
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Occurio un error: " +  ex.Message,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Occurio un error: " + ex.Message,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             lblError.Text = "";
-            /*Inicio Login Prueba*/
-            txtUsuario.Text = "sanchezcarlos";
-            txtContra.Text = "prueba2";
-            /*Fin Login Prueba*/
         }
 
-        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        private void txtContra_Load(object sender, EventArgs e)
         {
-            IniciarEnabled();
-            lblError.Text = "";
-        }
-
-        private void txtContra_TextChanged(object sender, EventArgs e)
-        {
-            IniciarEnabled();
-            lblError.Text = "";
-        }
-
-        private void txtContra_KeyPress(object sender, KeyPressEventArgs e)
-        //btn Iniciar al presion enter en campo Contraseña
-        {
-            if ((int)e.KeyChar == (int)Keys.Enter)
-            {
-                btnIniciar_Click(sender, e);
-            }
+            txtContra.Hide(true);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -89,32 +55,24 @@ namespace ProyectoCampo_JuanFer
             {
                 Application.Exit();
             }
-            else txtUsuario.Focus();
+            else txtUsuario.Enfocar();
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             UsuarioBE user;
-            string us = txtUsuario.Text;
-            string psw = txtContra.Text;
-            string patron = "^[A-Za-z0-9]+$";
-            bool okus = Regex.IsMatch(us, patron);
-            bool okpsw = Regex.IsMatch(psw, patron);
 
-            if (!okus || !okpsw)//Validacion caracteres
+            if (!txtUsuario.ok || !txtContra.ok)
             {
-                MessageBox.Show("Los datos ingresados no cumplen con el formato requerido.","Datos Invalidos",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
-                txtUsuario.Clear();
-                txtContra.Clear();
-                txtUsuario.Focus();
+                MessageBox.Show("Los datos ingresados no cumplen con el formato requerido.", "Datos Invalidos", MessageBoxButtons.OK,                       MessageBoxIcon.Exclamation);
             }
             else
             {
                 try
                 {
                     user = new UsuarioBE();
-                    user.user = us;
-                    user.pass = psw;
+                    user.user = txtUsuario.texto;
+                    user.pass = txtContra.texto;
 
                     int authOK = usuario.Login(user);
                     if (authOK == 1)
@@ -127,10 +85,6 @@ namespace ProyectoCampo_JuanFer
                     }
                     else
                     {
-                        txtContra.Text = "";
-                        txtUsuario.Text = "";
-                        txtUsuario.Focus();
-
                         //Mensaje de label de Error
                         switch (authOK)
                         {
@@ -144,14 +98,14 @@ namespace ProyectoCampo_JuanFer
                                 lblError.Text = "La contraseña ingresada es incorrecta";
                                 break;
                             case 4:
-                                MessageBox.Show($"El usuario -->{us}<-- no esta disponible. Contacte al administrador.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                MessageBox.Show($"El usuario -->{user.user}<-- no esta disponible. Contacte al administrador.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 break;
                             case 5:
                                 MessageBox.Show("Cantidad de intentos superado, se bloqueo el usuario. Cerrando la aplicacion.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 Application.Exit();
                                 break;
                             case 6:
-                                MessageBox.Show($"El usuario -->{us}<-- ya tiene la sesion iniciada.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                MessageBox.Show($"El usuario -->{user.user}<-- ya tiene la sesion iniciada.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 frmMenu frm = new frmMenu();
                                 frm.Show();
                                 this.Hide();
@@ -174,6 +128,9 @@ namespace ProyectoCampo_JuanFer
                     MessageBox.Show("Error de comunicacion con la Base de Datos: " + ex.Message);
                 }
             }
+            txtUsuario.Limpiar();
+            txtContra.Limpiar();
+            txtUsuario.Enfocar();
         }
 
         private void lblSinConexion_Click(object sender, EventArgs e)
@@ -204,10 +161,15 @@ namespace ProyectoCampo_JuanFer
 
         private void frm_closing(object sender, FormClosingEventArgs e)
         {
-            txtContra.Text = "";
-            txtUsuario.Text = "";
+            txtContra.Limpiar();
+            txtUsuario.Limpiar();
             this.Show();
-            txtUsuario.Focus();
+            txtUsuario.Enfocar();
+        }
+
+        private void txtUsuario_Leave(object sender, EventArgs e)
+        {
+            lblError.Text = "";
         }
     }
 }

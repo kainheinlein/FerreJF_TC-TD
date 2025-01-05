@@ -80,7 +80,6 @@
             this.tsAyuda});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1548, 50);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
@@ -234,15 +233,16 @@
             // carritoToolStripMenuItem
             // 
             this.carritoToolStripMenuItem.Name = "carritoToolStripMenuItem";
-            this.carritoToolStripMenuItem.Size = new System.Drawing.Size(236, 34);
+            this.carritoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.carritoToolStripMenuItem.Text = "Llenar Carrito";
             this.carritoToolStripMenuItem.Click += new System.EventHandler(this.CarritoToolStripMenuItem_Click);
             // 
             // realizarCobroToolStripMenuItem
             // 
             this.realizarCobroToolStripMenuItem.Name = "realizarCobroToolStripMenuItem";
-            this.realizarCobroToolStripMenuItem.Size = new System.Drawing.Size(236, 34);
+            this.realizarCobroToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.realizarCobroToolStripMenuItem.Text = "Realizar Venta";
+            this.realizarCobroToolStripMenuItem.Click += new System.EventHandler(this.realizarCobroToolStripMenuItem_Click);
             // 
             // tsGestion
             // 
@@ -258,21 +258,21 @@
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(220, 34);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(220, 34);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
             // proveedoresToolStripMenuItem
             // 
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(220, 34);
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.proveedoresToolStripMenuItem.Text = "Proveedores";
             // 
             // tsReportes
@@ -343,6 +343,7 @@
             this.Name = "frmMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ferre 0.5";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMenu_Load);
             this.Resize += new System.EventHandler(this.FrmMenu_Resize);
             this.menuStrip1.ResumeLayout(false);
