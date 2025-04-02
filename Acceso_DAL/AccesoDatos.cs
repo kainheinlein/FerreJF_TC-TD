@@ -13,8 +13,9 @@ namespace Acceso_DAL
 {
     public class AccesoDatos
     {
-        private SqlConnection _conexion;
-        private readonly string cadenaSQL = @"Data Source=KAIN-NB\SQLEXPRESS;Initial Catalog=FerreDB;Integrated Security=True";
+        private SqlConnection _conexion; 
+        private readonly string cadenaSQL = @"Data Source=(localdb)\dblocal;Initial Catalog=FerreDB;Integrated Security=True";
+        //private readonly string cadenaSQL = @"Data Source=KAIN-NB\SQLEXPRESS;Initial Catalog=FerreDB;Integrated Security=True";
 
         public SqlConnection conexion { get => _conexion; }
 
@@ -27,9 +28,6 @@ namespace Acceso_DAL
         public void CerrarConexion()
         {
             _conexion.Close();
-            //_conexion.Dispose();//Libera memoria
-            //_conexion=null;
-            //GC.Collect();
         }
 
         public bool VerificarConexion()
@@ -71,17 +69,25 @@ namespace Acceso_DAL
 
         public void Escribir(string sp, SqlParameter[] parametros)
         {
+            SqlTransaction tr;
+            AbrirConexion();
+            tr = conexion.BeginTransaction();
             try
             {
-                AbrirConexion();
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = sp;
                 cmd.Connection = conexion;
                 cmd.Parameters.AddRange(parametros);
+                cmd.Transaction = tr;
                 cmd.ExecuteNonQuery();
+                tr.Commit();
             }
-            catch(Exception e) { throw e; }
+            catch(Exception e)
+            {
+                tr.Rollback();
+                throw e;
+            }
             finally { CerrarConexion(); }
         }
 

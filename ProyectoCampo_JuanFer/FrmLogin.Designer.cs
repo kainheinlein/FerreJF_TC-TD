@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.txtUsuario = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblContra = new System.Windows.Forms.Label();
-            this.txtContra = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cambiarIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,24 +38,18 @@
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblSinConexion = new System.Windows.Forms.Label();
+            this.scBase = new System.ServiceProcess.ServiceController();
+            this.txtUsuario = new ProyectoCampo_JuanFer.ucAlfaNum();
+            this.txtContra = new ProyectoCampo_JuanFer.ucAlfaNum();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Location = new System.Drawing.Point(73, 153);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(179, 20);
-            this.txtUsuario.TabIndex = 0;
-            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
             // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(70, 136);
+            this.lblUsuario.Location = new System.Drawing.Point(86, 139);
             this.lblUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(57, 15);
@@ -68,30 +60,19 @@
             // 
             this.lblContra.AutoSize = true;
             this.lblContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContra.Location = new System.Drawing.Point(70, 184);
+            this.lblContra.Location = new System.Drawing.Point(86, 184);
             this.lblContra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblContra.Name = "lblContra";
             this.lblContra.Size = new System.Drawing.Size(80, 15);
             this.lblContra.TabIndex = 3;
             this.lblContra.Text = "Contraseña";
             // 
-            // txtContra
-            // 
-            this.txtContra.Location = new System.Drawing.Point(73, 201);
-            this.txtContra.Margin = new System.Windows.Forms.Padding(2);
-            this.txtContra.Name = "txtContra";
-            this.txtContra.Size = new System.Drawing.Size(179, 20);
-            this.txtContra.TabIndex = 2;
-            this.txtContra.UseSystemPasswordChar = true;
-            this.txtContra.TextChanged += new System.EventHandler(this.txtContra_TextChanged);
-            this.txtContra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContra_KeyPress);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(10, 26);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(306, 99);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -121,7 +102,7 @@
             // lblError
             // 
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(7, 275);
+            this.lblError.Location = new System.Drawing.Point(7, 279);
             this.lblError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(309, 31);
@@ -132,13 +113,12 @@
             // 
             this.btnIniciar.BackColor = System.Drawing.Color.Gray;
             this.btnIniciar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIniciar.Enabled = false;
             this.btnIniciar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIniciar.ForeColor = System.Drawing.Color.Black;
             this.btnIniciar.Location = new System.Drawing.Point(73, 235);
-            this.btnIniciar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnIniciar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(83, 29);
             this.btnIniciar.TabIndex = 8;
@@ -155,7 +135,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.Black;
             this.btnCancelar.Location = new System.Drawing.Point(169, 235);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(83, 29);
             this.btnCancelar.TabIndex = 9;
@@ -178,27 +158,56 @@
             this.lblSinConexion.MouseLeave += new System.EventHandler(this.lblSinConexion_MouseLeave);
             this.lblSinConexion.MouseHover += new System.EventHandler(this.lblSinConexion_MouseHover);
             // 
+            // scBase
+            // 
+            this.scBase.MachineName = "KainVM";
+            this.scBase.ServiceName = "MSSQL$SQLEXPRESS";
+            // 
+            // txtUsuario
+            // 
+            this.txtUsuario.isPass = false;
+            this.txtUsuario.Location = new System.Drawing.Point(73, 146);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.ok = false;
+            this.txtUsuario.Size = new System.Drawing.Size(179, 37);
+            this.txtUsuario.TabIndex = 11;
+            this.txtUsuario.texto = "";
+            this.txtUsuario.Leave += new System.EventHandler(this.txtUsuario_Leave);
+            // 
+            // txtContra
+            // 
+            this.txtContra.isPass = false;
+            this.txtContra.Location = new System.Drawing.Point(73, 195);
+            this.txtContra.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txtContra.Name = "txtContra";
+            this.txtContra.ok = false;
+            this.txtContra.Size = new System.Drawing.Size(179, 37);
+            this.txtContra.TabIndex = 12;
+            this.txtContra.texto = "";
+            this.txtContra.Load += new System.EventHandler(this.txtContra_Load);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(325, 343);
+            this.Controls.Add(this.lblContra);
+            this.Controls.Add(this.lblUsuario);
+            this.Controls.Add(this.txtContra);
+            this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.lblSinConexion);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblContra);
-            this.Controls.Add(this.txtContra);
-            this.Controls.Add(this.lblUsuario);
-            this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -213,11 +222,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblContra;
-        private System.Windows.Forms.TextBox txtContra;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem cambiarIdiomaToolStripMenuItem;
@@ -225,5 +231,8 @@
         private System.Windows.Forms.Button btnIniciar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblSinConexion;
+        private System.ServiceProcess.ServiceController scBase;
+        private ucAlfaNum txtUsuario;
+        private ucAlfaNum txtContra;
     }
 }

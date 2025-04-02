@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace ProyectoCampo_JuanFer
 {
     public partial class frmMenu : Form
@@ -142,6 +143,11 @@ namespace ProyectoCampo_JuanFer
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void realizarCobroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

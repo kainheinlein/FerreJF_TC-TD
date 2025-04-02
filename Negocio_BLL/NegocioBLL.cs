@@ -13,7 +13,7 @@ namespace Negocio_BLL
     public class NegocioBLL
     {
         private MP_Usuario mpUsuario = new MP_Usuario();
-        public MP_Producto mpProducto = new MP_Producto();
+        private MP_Producto mpProducto = new MP_Producto();
 
         public List<UsuarioBE> ListarUsuarios()
         {
